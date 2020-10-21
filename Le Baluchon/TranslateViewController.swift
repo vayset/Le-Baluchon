@@ -6,4 +6,11 @@ class TranslateViewController: UIViewController {
     @IBOutlet weak var translateButton: UIButton!
     @IBOutlet weak var translateLabel: UILabel!
 
+    
+    
+    
+    
+    
+    
+    
 }

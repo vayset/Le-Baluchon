@@ -19,6 +19,10 @@ class CurrencyViewController: UIViewController {
     }
     
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     func assignRateToLabel(currencyResponse: Result<CurrencyResponse, NetworkManagerError>) {
         print("Saddam")
         DispatchQueue.main.async {
@@ -31,15 +35,13 @@ class CurrencyViewController: UIViewController {
             case .success(let response):
                 let valueToConvert =  Double(self.valueToConvertTextField.text!)!
                 let convertedValue = valueToConvert * response.rates["CHF"]!
-                
-                self.convertedValueLabel.text = convertedValue.description
+                let valueFormated = String(format: "Value: %.1f", convertedValue)
+                self.convertedValueLabel.text = valueFormated.description
             }
            
         }
        
     }
-    
-    
     
     private func presentAlert(error: NetworkManagerError) {
         let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
@@ -63,6 +65,7 @@ enum NetworkManagerError: Error {
     case failedToDecodeJSON
     case unknownError
     case invalidHttpStatusCode
+    case couldNotCreateUrl
 }
 
 
@@ -117,5 +120,6 @@ class NetworkManager {
         task.resume()
         
     }
+    
 }
 

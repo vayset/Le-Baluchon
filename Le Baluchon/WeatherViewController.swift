@@ -12,48 +12,90 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var myCityLabel: UILabel!
     @IBOutlet weak var temperatureInMyCityLabel: UILabel!
     @IBOutlet weak var descriptionOfWeatherConditionsInMyCityLabel: UILabel!
+    
+    
     @IBOutlet weak var visitCityLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var descriptionOfWeatherConditionsLabel: UILabel!
     
-    @IBOutlet weak var weatherImageOutlet: UIImageView!
-    
     private let networkManager = NetworkManager()
     
     
+    private let newyorkId = "5128581"
+    private let strasbourgId = "2973783"
+    
     override func viewDidLoad() {
-        getWeather(cityId: "5128581")
-        getWeather(cityId: "2973783")
+        super.viewDidLoad()
         
+        getWeather(cityId: strasbourgId, completion: { response in
+            self.assignWeatherToLabels(
+                currencyResponse: response,
+                temperatureLabel: self.temperatureInMyCityLabel,
+                cityNameLabel: self.myCityLabel,
+                descriptionWeatherConditionsLabel: self.descriptionOfWeatherConditionsInMyCityLabel
+            )
+            
+        })
+        
+        getWeather(cityId: newyorkId, completion: { response in
+            self.assignWeatherToLabels(
+                currencyResponse: response,
+                temperatureLabel: self.temperatureLabel,
+                cityNameLabel: self.visitCityLabel,
+                descriptionWeatherConditionsLabel: self.descriptionOfWeatherConditionsLabel
+            )
+            
+        })
+        
+       
     }
     
-//    func getMyCityWeather(cityId: String) {
-//        let urlString = "http://api.openweathermap.org/data/2.5/weather?id=\(cityId)&appid=2c0724a7707cee690f3818f2bb142711&units=metric" // utilise l'utl corresponsdante à l'API weather
-//
-//        let url = URL(string: urlString)!
-//        networkManager.fetch(url: url, completion: assignWeatherOnMyCityToLabel)
-//    }
-    
-    func getWeather(cityId: String) {
-        let urlString = "http://api.openweathermap.org/data/2.5/weather?id=5128581&appid=2c0724a7707cee690f3818f2bb142711&units=metric" // utilise l'utl corresponsdante à l'API weather
-        let urlMyCityString = "http://api.openweathermap.org/data/2.5/weather?id=2973783&appid=2c0724a7707cee690f3818f2bb142711&units=metric"
-        let myCityUrl = URL(string: urlMyCityString)!
+    private func getWeather<T: Codable>(cityId: String, completion: @escaping (Result<T, NetworkManagerError>) -> Void) {
+        guard let url = getWeatherURL(cityId: cityId) else {
+            completion(.failure(.couldNotCreateUrl))
+            return
+            
+        }
         
-        let url = URL(string: urlString)!
-        networkManager.fetch(url: url, completion: assignWeatherToLabel)
-        networkManager.fetch(url: myCityUrl, completion: assignWeatherOnMyCityToLabel)
-
+        networkManager.fetch(url: url, completion: completion)
     }
     
-    func assignWeatherOnMyCityToLabel(currencyResponse: Result<WeatherResponse, NetworkManagerError>) { // Change currency response
+    private func getWeatherURL(cityId: String) -> URL? {
+        
+        var urlComponents = URLComponents()
+        urlComponents.scheme = "http"
+        urlComponents.host = "api.openweathermap.org"
+        urlComponents.path = "/data/2.5/weather"
+        urlComponents.queryItems = [
+            URLQueryItem(name: "id", value: cityId),
+            URLQueryItem(name: "appid", value: "2c0724a7707cee690f3818f2bb142711"),
+            URLQueryItem(name: "units", value: "metric")
+        ]
+        
+        return urlComponents.url
+//        return URL(string: urlString)
+    }
+    
+    private func assignWeatherToLabels(
+        currencyResponse: Result<WeatherResponse, NetworkManagerError>,
+        temperatureLabel: UILabel,
+        cityNameLabel: UILabel,
+        descriptionWeatherConditionsLabel: UILabel
+    ) { // Change currency response
         
         DispatchQueue.main.async {
             
             switch currencyResponse {
             case .failure(let error):
                 print(error.localizedDescription)
+                
             case .success(let response):
-                self.weatherOfEachCity(response: response, temperature: self.temperatureInMyCityLabel, cityName: self.myCityLabel, descriptionWeatherConditions: self.descriptionOfWeatherConditionsInMyCityLabel)
+                self.weatherOfEachCity(
+                    response: response,
+                    temperatureLabel: temperatureLabel,
+                    cityNameLabel: cityNameLabel,
+                    descriptionWeatherConditionsLabel: descriptionWeatherConditionsLabel
+                )
             }
             
             
@@ -61,32 +103,16 @@ class WeatherViewController: UIViewController {
         
     }
     
-    func assignWeatherToLabel(currencyResponse: Result<WeatherResponse, NetworkManagerError>) { // Change currency response
-        
-        DispatchQueue.main.async {
-            
-            switch currencyResponse {
-            case .failure(let error):
-                print(error.localizedDescription)
-            case .success(let response):
-                self.weatherOfEachCity(response: response, temperature: self.visitCityLabel, cityName: self.visitCityLabel, descriptionWeatherConditions: self.descriptionOfWeatherConditionsLabel)
-            }
-            
-            
-        }
-        
-    }
-    
-    func weatherOfEachCity(response: WeatherResponse, temperature: UILabel, cityName: UILabel, descriptionWeatherConditions: UILabel) {
+    private func weatherOfEachCity(response: WeatherResponse, temperatureLabel: UILabel, cityNameLabel: UILabel, descriptionWeatherConditionsLabel: UILabel) {
         let city = response.name
-        let humidity = response.main.humidity
-        let currentTemperature = response.main.temp
-        temperature.text = "\(currentTemperature.description)°C"
-        cityName.text = city.description
-        descriptionWeatherConditions.text = humidity.description
-        if humidity > 50 {
-            self.weatherImageOutlet.image = UIImage(named: "weather")
-        }
+        let humidity = response.main?.humidity ?? 0
+        let currentTemperature = response.main?.temp ?? 0
+        //let currentWeatherDescription = response.weather?.description
+        //ici nv ibOutlet
+        temperatureLabel.text = "\(currentTemperature.description)°C"
+        cityNameLabel.text = city?.description
+        descriptionWeatherConditionsLabel.text = "Humidity: \(humidity.description)"
+        
     }
     
 }
