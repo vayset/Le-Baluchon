@@ -33,9 +33,9 @@ class CurrencyViewController: UIViewController {
                 self.presentAlert(error: error)
                 
             case .success(let response):
-                let valueToConvert =  Double(self.valueToConvertTextField.text!)!
+                let valueToConvert = Double(self.valueToConvertTextField.text!)!
                 let convertedValue = valueToConvert * response.rates["CHF"]!
-                let valueFormated = String(format: "Value: %.1f", convertedValue)
+                let valueFormated = String(format: "Value: %.2f", convertedValue)
                 self.convertedValueLabel.text = valueFormated.description
             }
            

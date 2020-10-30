@@ -29,7 +29,7 @@ class WeatherViewController: UIViewController {
         
         getWeather(cityId: strasbourgId, completion: { response in
             self.assignWeatherToLabels(
-                currencyResponse: response,
+                weatherResponse: response,
                 temperatureLabel: self.temperatureInMyCityLabel,
                 cityNameLabel: self.myCityLabel,
                 descriptionWeatherConditionsLabel: self.descriptionOfWeatherConditionsInMyCityLabel
@@ -39,7 +39,7 @@ class WeatherViewController: UIViewController {
         
         getWeather(cityId: newyorkId, completion: { response in
             self.assignWeatherToLabels(
-                currencyResponse: response,
+                weatherResponse: response,
                 temperatureLabel: self.temperatureLabel,
                 cityNameLabel: self.visitCityLabel,
                 descriptionWeatherConditionsLabel: self.descriptionOfWeatherConditionsLabel
@@ -77,7 +77,7 @@ class WeatherViewController: UIViewController {
     }
     
     private func assignWeatherToLabels(
-        currencyResponse: Result<WeatherResponse, NetworkManagerError>,
+        weatherResponse: Result<WeatherResponse, NetworkManagerError>,
         temperatureLabel: UILabel,
         cityNameLabel: UILabel,
         descriptionWeatherConditionsLabel: UILabel
@@ -85,7 +85,7 @@ class WeatherViewController: UIViewController {
         
         DispatchQueue.main.async {
             
-            switch currencyResponse {
+            switch weatherResponse {
             case .failure(let error):
                 print(error.localizedDescription)
                 
@@ -114,5 +114,6 @@ class WeatherViewController: UIViewController {
         descriptionWeatherConditionsLabel.text = "Humidity: \(humidity.description)"
         
     }
+    
     
 }
