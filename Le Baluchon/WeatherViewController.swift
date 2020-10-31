@@ -12,14 +12,13 @@ class WeatherViewController: UIViewController {
     @IBOutlet weak var myCityLabel: UILabel!
     @IBOutlet weak var temperatureInMyCityLabel: UILabel!
     @IBOutlet weak var descriptionOfWeatherConditionsInMyCityLabel: UILabel!
-    
-    
+    @IBOutlet weak var weatherInMyCityImageView: UIImageView!
+    @IBOutlet weak var weatherInVisitCityImageView: UIImageView!
     @IBOutlet weak var visitCityLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var descriptionOfWeatherConditionsLabel: UILabel!
     
     private let networkManager = NetworkManager()
-    
     
     private let newyorkId = "5128581"
     private let strasbourgId = "2973783"
@@ -103,15 +102,29 @@ class WeatherViewController: UIViewController {
         
     }
     
+    func weatherImage(humidity: Int)  {
+        if humidity < 50 {
+            self.weatherInMyCityImageView.image = UIImage(named: "sunn")
+            self.weatherInVisitCityImageView.image = UIImage(named: "sunn")
+        }
+        else if humidity > 50 {
+            self.weatherInMyCityImageView.image = UIImage(named: "cloudRain")
+            self.weatherInVisitCityImageView.image = UIImage(named: "cloudRain")
+
+        }
+    }
+    
     private func weatherOfEachCity(response: WeatherResponse, temperatureLabel: UILabel, cityNameLabel: UILabel, descriptionWeatherConditionsLabel: UILabel) {
         let city = response.name
         let humidity = response.main?.humidity ?? 0
         let currentTemperature = response.main?.temp ?? 0
+        let weatherMain = response.weather?.first?.main ?? "0"
         //let currentWeatherDescription = response.weather?.description
         //ici nv ibOutlet
         temperatureLabel.text = "\(currentTemperature.description)°C"
         cityNameLabel.text = city?.description
-        descriptionWeatherConditionsLabel.text = "Humidity: \(humidity.description)"
+        descriptionWeatherConditionsLabel.text = "\(weatherMain.description)"
+        weatherImage(humidity: humidity)
         
     }
     
