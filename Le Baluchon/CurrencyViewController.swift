@@ -1,14 +1,13 @@
 import UIKit
 
 class CurrencyViewController: UIViewController {
-    
-    @IBOutlet weak var valueToConvertTextField: UITextField!
-    
+
+    @IBOutlet weak var valueToConvertLabel: UILabel!
     @IBOutlet weak var convertedValueLabel: UILabel!
-    
+    @IBOutlet weak var euroValueImageView: UIImageView!
+    @IBOutlet weak var usdValueImageView: UIImageView!
     
     @IBAction func didTapOnConvertButton() {
-        
         let urlString = "http://data.fixer.io/api/latest?access_key=7dc786b7cef348978bc4d5664e536441"
         let url = URL(string: urlString)!
         networkManager.fetch(url: url, completion: assignRateToLabel)
@@ -18,6 +17,23 @@ class CurrencyViewController: UIViewController {
         
     }
     
+    @IBAction func removeCurrencyLabel(_ sender: Any) {
+        valueToConvertLabel.text?.removeAll()
+        convertedValueLabel.text?.removeAll()
+    }
+    
+    @IBAction func digitsButton(_ sender: UIButton) {
+        let test = valueToConvertLabel.text! + String(sender.tag)
+        
+        valueToConvertLabel.text = test
+        
+        
+        //        valueToConvertTextField.text = digitArray.f
+        let urlString = "http://data.fixer.io/api/latest?access_key=7dc786b7cef348978bc4d5664e536441"
+        let url = URL(string: urlString)!
+        networkManager.fetch(url: url, completion: assignRateToLabel)
+        
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -33,14 +49,14 @@ class CurrencyViewController: UIViewController {
                 self.presentAlert(error: error)
                 
             case .success(let response):
-                let valueToConvert = Double(self.valueToConvertTextField.text!)!
-                let convertedValue = valueToConvert * response.rates["CHF"]!
-                let valueFormated = String(format: "Value: %.2f", convertedValue)
+                let valueToConvert = Double(self.valueToConvertLabel.text!)!
+                let convertedValue = valueToConvert * response.rates["USD"]!
+                let valueFormated = String(format: "%.2f", convertedValue)
                 self.convertedValueLabel.text = valueFormated.description
             }
-           
+            
         }
-       
+        
     }
     
     private func presentAlert(error: NetworkManagerError) {
@@ -54,7 +70,8 @@ class CurrencyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        euroValueImageView.image = UIImage(named: "euro")
+        usdValueImageView.image = UIImage(named: "usd")
     }
 }
 
@@ -72,11 +89,11 @@ enum NetworkManagerError: Error {
 class NetworkManager {
     
     
-//    func getRate(completion: @escaping (Double) -> Void)  {
-//        DispatchQueue.global(qos: .background).async {
-//            completion(1.08)
-//        }
-//    }
+    //    func getRate(completion: @escaping (Double) -> Void)  {
+    //        DispatchQueue.global(qos: .background).async {
+    //            completion(1.08)
+    //        }
+    //    }
     
     
     func fetch<T : Codable>(url: URL, completion: @escaping (Result<T, NetworkManagerError>) -> Void)  {
