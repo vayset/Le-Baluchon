@@ -3,7 +3,6 @@
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -148,7 +147,7 @@
             </objects>
             <point key="canvasLocation" x="-446" y="605"/>
         </scene>
-        <!--Item-->
+        <!--Translate-->
         <scene sceneID="21N-7A-Mro">
             <objects>
                 <viewController id="kD5-X2-Paq" customClass="TranslateViewController" customModule="Le_Baluchon" customModuleProvider="target" sceneMemberID="viewController">
@@ -156,54 +155,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="input your text to translate" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1xe-7O-NRd">
-                                <rect key="frame" x="16" y="405" width="358" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLy-fz-hkJ">
-                                <rect key="frame" x="174" y="211" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oNx-Bj-hIP">
-                                <rect key="frame" x="101" y="639" width="187" height="96"/>
-                                <color key="backgroundColor" name="AccentColor"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PYs-Qh-fOx">
+                                <rect key="frame" x="16" y="140" width="358" height="46"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="96" id="b9H-CZ-kdm"/>
+                                    <constraint firstAttribute="height" constant="46" id="OyG-8w-nDh"/>
                                 </constraints>
-                                <state key="normal" title="Translate">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Amn-Ge-Hmb">
+                                <rect key="frame" x="16" y="219" width="358" height="272"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GqZ-eG-QDK">
+                                <rect key="frame" x="16" y="551" width="358" height="195"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="195" id="DFZ-mq-YRa"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pu3-ZE-lWU">
+                                <rect key="frame" x="16" y="506" width="358" height="30"/>
+                                <color key="backgroundColor" red="0.13464099169999999" green="0.23885753749999999" blue="0.2549056113" alpha="0.56000000000000005" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="translateButton" destination="kD5-X2-Paq" eventType="touchUpInside" id="723-yd-Ud4"/>
+                                    <action selector="translateButton" destination="kD5-X2-Paq" eventType="touchUpInside" id="cwY-X2-hgW"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6pS-N8-tGU"/>
-                        <color key="backgroundColor" systemColor="systemPinkColor"/>
+                        <color key="backgroundColor" red="0.71764705882352942" green="0.8419675231" blue="0.81288739587260261" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="1xe-7O-NRd" firstAttribute="leading" secondItem="6pS-N8-tGU" secondAttribute="leading" constant="16" id="Lez-7S-IsS"/>
-                            <constraint firstItem="6pS-N8-tGU" firstAttribute="bottom" secondItem="oNx-Bj-hIP" secondAttribute="bottom" constant="26" id="NM6-Fy-9B0"/>
-                            <constraint firstItem="6pS-N8-tGU" firstAttribute="trailing" secondItem="oNx-Bj-hIP" secondAttribute="trailing" constant="102" id="SX5-NH-dff"/>
-                            <constraint firstItem="oNx-Bj-hIP" firstAttribute="leading" secondItem="6pS-N8-tGU" secondAttribute="leading" constant="101" id="h5o-Ek-XSx"/>
-                            <constraint firstItem="1xe-7O-NRd" firstAttribute="top" secondItem="gLy-fz-hkJ" secondAttribute="bottom" constant="173" id="hi3-OX-8ub"/>
-                            <constraint firstItem="6pS-N8-tGU" firstAttribute="trailing" secondItem="1xe-7O-NRd" secondAttribute="trailing" constant="16" id="r9X-eS-RwU"/>
-                            <constraint firstItem="gLy-fz-hkJ" firstAttribute="centerX" secondItem="nDd-Ms-uOv" secondAttribute="centerX" id="sJp-WS-EgS"/>
-                            <constraint firstItem="1xe-7O-NRd" firstAttribute="centerY" secondItem="nDd-Ms-uOv" secondAttribute="centerY" id="wAO-Wn-jlb"/>
+                            <constraint firstItem="PYs-Qh-fOx" firstAttribute="top" secondItem="6pS-N8-tGU" secondAttribute="top" id="5WE-ym-hWG"/>
+                            <constraint firstItem="GqZ-eG-QDK" firstAttribute="top" secondItem="pu3-ZE-lWU" secondAttribute="bottom" constant="15" id="9jr-pk-yij"/>
+                            <constraint firstItem="GqZ-eG-QDK" firstAttribute="leading" secondItem="6pS-N8-tGU" secondAttribute="leading" constant="16" id="DWW-P3-ZJk"/>
+                            <constraint firstItem="Amn-Ge-Hmb" firstAttribute="leading" secondItem="6pS-N8-tGU" secondAttribute="leading" constant="16" id="F0j-wG-Ap0"/>
+                            <constraint firstItem="pu3-ZE-lWU" firstAttribute="leading" secondItem="6pS-N8-tGU" secondAttribute="leading" constant="16" id="GTe-ca-oQV"/>
+                            <constraint firstItem="PYs-Qh-fOx" firstAttribute="leading" secondItem="6pS-N8-tGU" secondAttribute="leading" constant="16" id="KpH-Fd-RdX"/>
+                            <constraint firstItem="Amn-Ge-Hmb" firstAttribute="top" secondItem="PYs-Qh-fOx" secondAttribute="bottom" constant="33" id="TNh-F8-U3z"/>
+                            <constraint firstItem="6pS-N8-tGU" firstAttribute="trailing" secondItem="PYs-Qh-fOx" secondAttribute="trailing" constant="16" id="eS7-RS-Pj7"/>
+                            <constraint firstItem="6pS-N8-tGU" firstAttribute="bottom" secondItem="GqZ-eG-QDK" secondAttribute="bottom" constant="15" id="gkR-K8-nmp"/>
+                            <constraint firstItem="6pS-N8-tGU" firstAttribute="trailing" secondItem="GqZ-eG-QDK" secondAttribute="trailing" constant="16" id="jdt-Rg-W7G"/>
+                            <constraint firstItem="6pS-N8-tGU" firstAttribute="trailing" secondItem="Amn-Ge-Hmb" secondAttribute="trailing" constant="16" id="nsm-Sy-WdB"/>
+                            <constraint firstItem="6pS-N8-tGU" firstAttribute="trailing" secondItem="pu3-ZE-lWU" secondAttribute="trailing" constant="16" id="rfk-xC-saE"/>
+                            <constraint firstItem="pu3-ZE-lWU" firstAttribute="top" secondItem="Amn-Ge-Hmb" secondAttribute="bottom" constant="15" id="tsO-nD-Cm0"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="CWu-t7-pET"/>
-                    <navigationItem key="navigationItem" id="nBh-qt-fqR"/>
+                    <navigationItem key="navigationItem" title="Translate" id="nBh-qt-fqR"/>
                     <connections>
-                        <outlet property="translateLabel" destination="gLy-fz-hkJ" id="Kyj-23-r7u"/>
-                        <outlet property="translateTextField" destination="1xe-7O-NRd" id="1iM-9v-YDN"/>
+                        <outlet property="titleUIView" destination="PYs-Qh-fOx" id="TnK-3P-Msb"/>
+                        <outlet property="translateTextUIbutton" destination="pu3-ZE-lWU" id="gy6-xt-tBV"/>
+                        <outlet property="translateTextUiView" destination="GqZ-eG-QDK" id="aG2-oC-M4U"/>
+                        <outlet property="translatedTextField" destination="Amn-Ge-Hmb" id="3GS-YS-1b3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3X3-Wt-HIn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1298" y="604"/>
+            <point key="canvasLocation" x="1296.9230769230769" y="602.84360189573454"/>
         </scene>
         <!--Currency-->
         <scene sceneID="RI0-Wr-UOy">
@@ -498,17 +507,11 @@
         </scene>
     </scenes>
     <resources>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

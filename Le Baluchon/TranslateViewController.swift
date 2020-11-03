@@ -4,7 +4,11 @@ class TranslateViewController: UIViewController {
 
     @IBOutlet weak var translateTextField: UITextField!
     @IBOutlet weak var translateLabel: UILabel!
-
+    @IBOutlet weak var translateTextUiView: UIView!
+    @IBOutlet weak var translatedTextField  : UIView!
+    @IBOutlet weak var translateTextUIbutton: UIButton!
+    @IBOutlet weak var titleUIView: UIView!
+    
     private let networkManager = NetworkManager()
 
 
@@ -21,6 +25,24 @@ class TranslateViewController: UIViewController {
         }
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        customUIView(customUIView: translateTextUiView)
+        customUIView(customUIView: translatedTextField)
+        customUIView(customUIView: titleUIView)
+
+    }
+    
+    func customUIView(customUIView: UIView) {
+
+        customUIView.layer.cornerRadius = 10
+        customUIView.layer.shadowColor = UIColor.black.cgColor
+        customUIView.layer.shadowOpacity = 0.3
+        customUIView.layer.shadowOffset = .zero
+        customUIView.layer.shadowRadius = 10
+        translateTextUIbutton.layer.cornerRadius = 10
+
+    }
 
     @IBAction func translateButton() {
         
