@@ -7,7 +7,7 @@
 
 import UIKit
 
-class WeatherViewController: UIViewController {
+class WeatherViewController: BaseViewController {
     
     @IBOutlet weak var myCityLabel: UILabel!
     @IBOutlet weak var temperatureInMyCityLabel: UILabel!
@@ -50,29 +50,13 @@ class WeatherViewController: UIViewController {
     }
     
     private func getWeather<T: Codable>(cityId: String, completion: @escaping (Result<T, NetworkManagerError>) -> Void) {
-        guard let url = getWeatherURL(cityId: cityId) else {
+        guard let url = networkManager.getWeatherURL(cityId: cityId) else {
             completion(.failure(.couldNotCreateUrl))
             return
             
         }
         
         networkManager.fetch(url: url, completion: completion)
-    }
-    
-    private func getWeatherURL(cityId: String) -> URL? {
-        
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "http"
-        urlComponents.host = "api.openweathermap.org"
-        urlComponents.path = "/data/2.5/weather"
-        urlComponents.queryItems = [
-            URLQueryItem(name: "id", value: cityId),
-            URLQueryItem(name: "appid", value: "2c0724a7707cee690f3818f2bb142711"),
-            URLQueryItem(name: "units", value: "metric")
-        ]
-        
-        return urlComponents.url
-//        return URL(string: urlString)
     }
     
     private func assignWeatherToLabels(
@@ -86,7 +70,7 @@ class WeatherViewController: UIViewController {
             
             switch weatherResponse {
             case .failure(let error):
-                print(error.localizedDescription)
+                self.alertManagerController.presentSimpleAlert(from: self, message: error.localizedDescription)
                 
             case .success(let response):
                 self.weatherOfEachCity(
