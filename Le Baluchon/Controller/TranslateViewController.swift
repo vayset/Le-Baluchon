@@ -53,7 +53,7 @@ class TranslateViewController: BaseViewController {
         sourceLanguage = .english
         targetLanguage = .french
     }
-    @IBAction func didTapOnLanguageView(_ sender: UITapGestureRecognizer) {
+    @IBAction func didTapOnLanguageUIButton(_ sender: UIButton) {
         swap(&sourceLanguage, &targetLanguage)
     }
     
@@ -95,12 +95,5 @@ class TranslateViewController: BaseViewController {
         
         networkManager.fetch(url: url, completion: assignTranslatedText)
     }
-        
-//    func translatorSettings(response: TranslateResponse, translateTextField: UITextField, translateButton: UIButton, translateLabel: UILabel) {
-//        translateTextField.text = response.q
-//    }
-    
-    
-   
     
 }
