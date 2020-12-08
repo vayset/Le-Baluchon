@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Fmf-Sh-SMy">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -498,8 +499,8 @@
                     <navigationItem key="navigationItem" title="Currency" largeTitleDisplayMode="always" id="j23-Ru-vu2"/>
                     <connections>
                         <outlet property="convertedValueLabel" destination="WVJ-aw-LhW" id="loz-Nj-4hd"/>
-                        <outlet property="euroValueImageView" destination="HS6-fJ-dY7" id="7Z7-ve-ce7"/>
-                        <outlet property="usdValueImageView" destination="cDG-z3-Tv4" id="Qrf-NS-DO7"/>
+                        <outlet property="sourceCurrencyImageView" destination="cDG-z3-Tv4" id="Qrf-NS-DO7"/>
+                        <outlet property="targetCurrencyImageView" destination="HS6-fJ-dY7" id="7Z7-ve-ce7"/>
                         <outlet property="valueToConvertLabel" destination="AEL-W1-8fW" id="RWn-Fh-pPk"/>
                     </connections>
                 </viewController>

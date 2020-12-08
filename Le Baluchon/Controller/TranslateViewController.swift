@@ -1,25 +1,5 @@
 import UIKit
 
-
-enum Language {
-    case english
-    case french
-    
-    var code: String {
-        switch self {
-        case .english: return "en"
-        case .french: return "fr"
-        }
-    }
-    
-    var displayName: String {
-        switch self {
-        case .english: return "English"
-        case .french: return "French"
-        }
-    }
-}
-
 class TranslateViewController: BaseViewController {
 
     @IBOutlet weak var targetLanguageLabel: UILabel!
@@ -31,7 +11,7 @@ class TranslateViewController: BaseViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private let networkManager = NetworkManager()
-
+    private let translateService = TranslateService()
 
     func assignTranslatedText(translateResponse: Result<TranslateResponse, NetworkManagerError>) {
         
@@ -84,7 +64,7 @@ class TranslateViewController: BaseViewController {
 
     @IBAction func translateButton() {
         
-        guard let url = networkManager.getTranslateUrl(
+        guard let url = translateService.getTranslateUrl(
             sourcelanguageCode: sourceLanguage.code,
             targetLanguageCode: targetLanguage.code,
             textToTranslate: translateTextField.text!

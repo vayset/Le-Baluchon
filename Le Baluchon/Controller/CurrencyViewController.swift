@@ -1,44 +1,26 @@
 import UIKit
 
-enum Value {
-    case euro
-    case usd
-    
-    var code: String {
-        switch self {
-        case .euro: return "EUR"
-        case .usd: return "USD"
-        }
-        
-    }
-    
-    
-    var displayIcons: String {
-        switch self {
-        case .euro: return "euro"
-        case .usd: return "usd"
-        }
-    }
-    
-}
+
 
 class CurrencyViewController: BaseViewController {
 
     @IBOutlet weak var valueToConvertLabel: UILabel!
     @IBOutlet weak var convertedValueLabel: UILabel!
-    @IBOutlet weak var euroValueImageView: UIImageView!
-    @IBOutlet weak var usdValueImageView: UIImageView!
+    @IBOutlet weak var targetCurrencyImageView: UIImageView!
+    @IBOutlet weak var sourceCurrencyImageView: UIImageView!
     
-    private var valueToConvertOne: Value = .euro {
+    private let networkManager = NetworkManager()
+    
+    private var sourceCurrency: Currency = .euro {
         didSet {
-            usdValueImageView.image = UIImage(named: valueToConvertOne.displayIcons)
+            sourceCurrencyImageView.image = UIImage(named: sourceCurrency.displayIcons)
 
         }
     }
     
-   private var convertedValueOne: Value = .usd {
+   private var targetCurrency: Currency = .usd {
         didSet{
-            euroValueImageView.image = UIImage(named: convertedValueOne.displayIcons)
+            targetCurrencyImageView.image = UIImage(named: targetCurrency.displayIcons)
 
         }
     }
@@ -50,12 +32,12 @@ class CurrencyViewController: BaseViewController {
     }
     
     @IBAction func didTapReverseValueUIButton(_ sender: Any) {
-        swap(&valueToConvertOne, &convertedValueOne)
+        swap(&sourceCurrency, &targetCurrency)
     }
     
     @IBAction func removeCurrencyLabel(_ sender: Any) {
-        valueToConvertLabel.text?.removeAll()
-        convertedValueLabel.text?.removeAll()
+        valueToConvertLabel.text = ""
+        convertedValueLabel.text = ""
     }
     
     @IBAction func digitsButton(_ sender: UIButton) {
@@ -63,16 +45,14 @@ class CurrencyViewController: BaseViewController {
         
         valueToConvertLabel.text = digit
         
-        
-        //        valueToConvertTextField.text = digitArray.f
         let urlString = "http://data.fixer.io/api/latest?access_key=7dc786b7cef348978bc4d5664e536441"
-        let url = URL(string: urlString)!
+        guard let url = URL(string: urlString) else { return }
         networkManager.fetch(url: url, completion: assignRateToLabel)
         
     }
     
     func assignRateToLabel(currencyResponse: Result<CurrencyResponse, NetworkManagerError>) {
-        print("Saddam")
+
         DispatchQueue.main.async {
             
             switch currencyResponse {
@@ -82,9 +62,9 @@ class CurrencyViewController: BaseViewController {
             case .success(let response):
                 let valueToConvert = Double(self.valueToConvertLabel.text!)!
                 print(valueToConvert)
-                let convertedValue = valueToConvert * response.rates["\(self.convertedValueOne.code)"]!
-                print(self.convertedValueOne.code)
-                print(response.rates["\(self.convertedValueOne.code)"]!)
+                let convertedValue = valueToConvert * response.rates["\(self.targetCurrency.code)"]!
+                print(self.targetCurrency.code)
+                print(response.rates["\(self.targetCurrency.code)"]!)
                 let valueFormated = String(format: "%.2f", convertedValue)
                 self.convertedValueLabel.text = valueFormated.description
             }
@@ -93,14 +73,10 @@ class CurrencyViewController: BaseViewController {
         
     }
     
-    private let networkManager = NetworkManager()
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        valueToConvertOne = .usd
-        convertedValueOne = .euro
+        sourceCurrency = .usd
+        targetCurrency = .euro
     }
 }
 

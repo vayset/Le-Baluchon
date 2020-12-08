@@ -18,7 +18,8 @@ class WeatherViewController: BaseViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var descriptionOfWeatherConditionsLabel: UILabel!
     
-    private let networkManager = NetworkManager()
+    private let weatherService = WeatherService()
+    
     
     private let newyorkId = "5128581"
     private let strasbourgId = "2973783"
@@ -26,7 +27,7 @@ class WeatherViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getWeather(cityId: strasbourgId, completion: { response in
+        weatherService.getWeather(cityId: strasbourgId, completion: { response in
             self.assignWeatherToLabels(
                 weatherResponse: response,
                 temperatureLabel: self.temperatureInMyCityLabel,
@@ -35,8 +36,8 @@ class WeatherViewController: BaseViewController {
             )
             
         })
-        
-        getWeather(cityId: newyorkId, completion: { response in
+    
+        weatherService.getWeather(cityId: newyorkId, completion: { response in
             self.assignWeatherToLabels(
                 weatherResponse: response,
                 temperatureLabel: self.temperatureLabel,
@@ -49,15 +50,7 @@ class WeatherViewController: BaseViewController {
        
     }
     
-    private func getWeather<T: Codable>(cityId: String, completion: @escaping (Result<T, NetworkManagerError>) -> Void) {
-        guard let url = networkManager.getWeatherURL(cityId: cityId) else {
-            completion(.failure(.couldNotCreateUrl))
-            return
-            
-        }
-        
-        networkManager.fetch(url: url, completion: completion)
-    }
+   
     
     private func assignWeatherToLabels(
         weatherResponse: Result<WeatherResponse, NetworkManagerError>,
@@ -90,11 +83,9 @@ class WeatherViewController: BaseViewController {
         if humidity < 50 {
             self.weatherInMyCityImageView.image = UIImage(named: "sunn")
             self.weatherInVisitCityImageView.image = UIImage(named: "sunn")
-        }
-        else if humidity > 50 {
+        } else {
             self.weatherInMyCityImageView.image = UIImage(named: "cloudRain")
             self.weatherInVisitCityImageView.image = UIImage(named: "cloudRain")
-
         }
     }
     
@@ -103,8 +94,6 @@ class WeatherViewController: BaseViewController {
         let humidity = response.main?.humidity ?? 0
         let currentTemperature = response.main?.temp ?? 0
         let weatherMain = response.weather?.first?.main ?? "0"
-        //let currentWeatherDescription = response.weather?.description
-        //ici nv ibOutlet
         temperatureLabel.text = "\(currentTemperature.description)°C"
         cityNameLabel.text = city?.description
         descriptionWeatherConditionsLabel.text = "\(weatherMain.description)"

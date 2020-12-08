@@ -9,37 +9,6 @@ import Foundation
 
 class NetworkManager {
     
-     func getWeatherURL(cityId: String) -> URL? {
-        
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "http"
-        urlComponents.host = "api.openweathermap.org"
-        urlComponents.path = "/data/2.5/weather"
-        urlComponents.queryItems = [
-            URLQueryItem(name: "id", value: cityId),
-            URLQueryItem(name: "appid", value: "2c0724a7707cee690f3818f2bb142711"),
-            URLQueryItem(name: "units", value: "metric")
-        ]
-        
-        return urlComponents.url
-//        return URL(string: urlString)
-    }
-
-    func getTranslateUrl(sourcelanguageCode: String, targetLanguageCode: String, textToTranslate: String) -> URL? {
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "https"
-        urlComponents.host = "translation.googleapis.com"
-        urlComponents.path = "/language/translate/v2"
-        urlComponents.queryItems = [
-            URLQueryItem(name: "key", value: "AIzaSyCvWsHARdQkJ2LkskI6fP-xcOQM_Bc-yC0"),
-            URLQueryItem(name: "q", value: textToTranslate),
-            URLQueryItem(name: "source", value: sourcelanguageCode),
-            URLQueryItem(name: "target", value: targetLanguageCode),
-            URLQueryItem(name: "format", value: "text")
-        ]
-        
-        return urlComponents.url
-    }
     
     func fetch<T : Codable>(url: URL, completion: @escaping (Result<T, NetworkManagerError>) -> Void)  {
         
