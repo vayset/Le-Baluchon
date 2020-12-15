@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 enum NetworkManagerError: LocalizedError {
     case noData
     case failedToDecodeJSON
