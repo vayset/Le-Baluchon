@@ -32,31 +32,30 @@ class WeatherViewController: BaseViewController {
                 weatherResponse: response,
                 temperatureLabel: self.temperatureInMyCityLabel,
                 cityNameLabel: self.myCityLabel,
-                descriptionWeatherConditionsLabel: self.descriptionOfWeatherConditionsInMyCityLabel
+                descriptionWeatherConditionsLabel: self.descriptionOfWeatherConditionsInMyCityLabel, weatherInMyCityImageView: self.weatherInMyCityImageView
             )
             
         })
-    
+        
         weatherService.getWeather(cityId: newyorkId, completion: { response in
             self.assignWeatherToLabels(
                 weatherResponse: response,
                 temperatureLabel: self.temperatureLabel,
                 cityNameLabel: self.visitCityLabel,
-                descriptionWeatherConditionsLabel: self.descriptionOfWeatherConditionsLabel
+                descriptionWeatherConditionsLabel: self.descriptionOfWeatherConditionsLabel, weatherInMyCityImageView: self.weatherInVisitCityImageView
             )
             
         })
         
-       
+        
     }
-    
-   
     
     private func assignWeatherToLabels(
         weatherResponse: Result<WeatherResponse, NetworkManagerError>,
         temperatureLabel: UILabel,
         cityNameLabel: UILabel,
-        descriptionWeatherConditionsLabel: UILabel
+        descriptionWeatherConditionsLabel: UILabel,
+        weatherInMyCityImageView: UIImageView
     ) { // Change currency response
         
         DispatchQueue.main.async {
@@ -70,35 +69,23 @@ class WeatherViewController: BaseViewController {
                     response: response,
                     temperatureLabel: temperatureLabel,
                     cityNameLabel: cityNameLabel,
-                    descriptionWeatherConditionsLabel: descriptionWeatherConditionsLabel
+                    descriptionWeatherConditionsLabel: descriptionWeatherConditionsLabel, weatherInMyCityImageView: weatherInMyCityImageView
                 )
             }
-            
-            
-        }
-        
-    }
-    
-    func weatherImage(humidity: Int)  {
-        if humidity < 50 {
-            self.weatherInMyCityImageView.image = UIImage(named: "sunn")
-            self.weatherInVisitCityImageView.image = UIImage(named: "sunn")
-        } else {
-            self.weatherInMyCityImageView.image = UIImage(named: "cloudRain")
-            self.weatherInVisitCityImageView.image = UIImage(named: "cloudRain")
         }
     }
     
-    private func weatherOfEachCity(response: WeatherResponse, temperatureLabel: UILabel, cityNameLabel: UILabel, descriptionWeatherConditionsLabel: UILabel) {
+    private func weatherOfEachCity(response: WeatherResponse, temperatureLabel: UILabel, cityNameLabel: UILabel, descriptionWeatherConditionsLabel: UILabel,weatherInMyCityImageView: UIImageView) {
         let city = response.name
-        let humidity = response.main?.humidity ?? 0
+        let weatherIconName = weatherService.getImageId(condiotionCode: response)
         let currentTemperature = response.main?.temp ?? 0
+        let currentTemperatureFormated = String(format: "%0.1f", currentTemperature)
         let weatherMain = response.weather?.first?.main ?? "0"
-        temperatureLabel.text = "\(currentTemperature.description)°C"
+        temperatureLabel.text = "\(currentTemperatureFormated.description)°C"
         cityNameLabel.text = city?.description
         descriptionWeatherConditionsLabel.text = "\(weatherMain.description)"
-        weatherImage(humidity: humidity)
-        
+        weatherInMyCityImageView.image = UIImage(named: weatherIconName)
+
     }
     
     

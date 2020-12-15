@@ -9,7 +9,6 @@ import Foundation
 
 class NetworkManager {
     
-    
     func fetch<T : Codable>(url: URL, completion: @escaping (Result<T, NetworkManagerError>) -> Void)  {
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in

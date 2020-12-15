@@ -14,12 +14,15 @@ class TranslateViewController: BaseViewController {
     private let translateService = TranslateService()
 
     func assignTranslatedText(translateResponse: Result<TranslateResponse, NetworkManagerError>) {
-        
+
         DispatchQueue.main.async {
+            self.activityIndicator.hidesWhenStopped = true
+            self.activityIndicator.startAnimating()
             switch translateResponse {
             case .failure(let error):
                 self.alertManagerController.presentSimpleAlert(from: self, message: error.localizedDescription)
             case .success(let response):
+                self.activityIndicator.stopAnimating()
                 guard let translatedText = response.data?.translations?.first?.translatedText else { return }
                 self.translateLabel.text = translatedText
             }

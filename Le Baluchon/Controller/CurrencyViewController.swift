@@ -10,6 +10,7 @@ class CurrencyViewController: BaseViewController {
     @IBOutlet weak var sourceCurrencyImageView: UIImageView!
     
     private let networkManager = NetworkManager()
+    private let currencyService = CurrencyService()
     
     private var sourceCurrency: Currency = .euro {
         didSet {
@@ -24,7 +25,6 @@ class CurrencyViewController: BaseViewController {
 
         }
     }
-
     
     @IBAction func addPoint(_ sender: Any) {
         let point = valueToConvertLabel.text! + String(".")
@@ -45,8 +45,7 @@ class CurrencyViewController: BaseViewController {
         
         valueToConvertLabel.text = digit
         
-        let urlString = "http://data.fixer.io/api/latest?access_key=7dc786b7cef348978bc4d5664e536441"
-        guard let url = URL(string: urlString) else { return }
+        guard let url = currencyService.getCurrencyURL() else { return }
         networkManager.fetch(url: url, completion: assignRateToLabel)
         
     }
