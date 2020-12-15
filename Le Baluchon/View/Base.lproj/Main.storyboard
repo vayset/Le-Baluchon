@@ -205,18 +205,8 @@
                                     <constraint firstItem="j0x-Af-ehV" firstAttribute="top" secondItem="PYs-Qh-fOx" secondAttribute="top" constant="13" id="svm-o0-klC"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UqC-Ka-cPZ">
-                                <rect key="frame" x="16" y="201" width="358" height="200"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="xSg-5b-GHO"/>
-                                </constraints>
-                                <color key="textColor" red="0.13464099169999999" green="0.23885753749999999" blue="0.2549056113" alpha="0.66371468320000004" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pu3-ZE-lWU">
-                                <rect key="frame" x="16" y="416" width="358" height="30"/>
+                                <rect key="frame" x="16" y="406" width="358" height="30"/>
                                 <color key="backgroundColor" red="0.13464099169999999" green="0.23885753749999999" blue="0.2549056113" alpha="0.56000000000000005" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Tgl-VZ-x6x"/>
@@ -224,37 +214,48 @@
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Translate"/>
                                 <connections>
-                                    <action selector="translateButton" destination="kD5-X2-Paq" eventType="touchUpInside" id="cwY-X2-hgW"/>
+                                    <action selector="didTapOnTranslateButton" destination="kD5-X2-Paq" eventType="touchUpInside" id="cwY-X2-hgW"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GtX-4g-35l">
-                                <rect key="frame" x="16" y="462" width="358" height="283"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.13464099169999999" green="0.23885753749999999" blue="0.2549056113" alpha="0.66371468320000004" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="vTG-jb-HxA">
-                                <rect key="frame" x="185" y="291" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Auv-j6-XoR">
+                                <rect key="frame" x="10" y="196" width="370" height="200"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="022-tc-GzN"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="o49-Er-1m2">
+                                <rect key="frame" x="16" y="452" width="358" height="293"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="vTG-jb-HxA">
+                                <rect key="frame" x="185" y="588" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6pS-N8-tGU"/>
                         <color key="backgroundColor" red="0.71764705882352942" green="0.8419675231" blue="0.81288739587260261" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="6pS-N8-tGU" firstAttribute="trailing" secondItem="GtX-4g-35l" secondAttribute="trailing" constant="16" id="0HR-pm-FIf"/>
-                            <constraint firstItem="UqC-Ka-cPZ" firstAttribute="leading" secondItem="6pS-N8-tGU" secondAttribute="leading" constant="16" id="0PR-rX-lm4"/>
-                            <constraint firstItem="UqC-Ka-cPZ" firstAttribute="top" secondItem="PYs-Qh-fOx" secondAttribute="bottom" constant="15" id="17f-28-EXO"/>
-                            <constraint firstItem="GtX-4g-35l" firstAttribute="top" secondItem="pu3-ZE-lWU" secondAttribute="bottom" constant="16" id="1RL-YD-wne"/>
                             <constraint firstItem="PYs-Qh-fOx" firstAttribute="top" secondItem="6pS-N8-tGU" secondAttribute="top" id="5WE-ym-hWG"/>
-                            <constraint firstItem="GtX-4g-35l" firstAttribute="leading" secondItem="6pS-N8-tGU" secondAttribute="leading" constant="16" id="GHi-OF-wpi"/>
+                            <constraint firstItem="vTG-jb-HxA" firstAttribute="centerY" secondItem="o49-Er-1m2" secondAttribute="centerY" id="5d8-Yh-3vI"/>
                             <constraint firstItem="pu3-ZE-lWU" firstAttribute="leading" secondItem="6pS-N8-tGU" secondAttribute="leading" constant="16" id="GTe-ca-oQV"/>
                             <constraint firstItem="PYs-Qh-fOx" firstAttribute="leading" secondItem="6pS-N8-tGU" secondAttribute="leading" constant="16" id="KpH-Fd-RdX"/>
+                            <constraint firstItem="Auv-j6-XoR" firstAttribute="top" secondItem="PYs-Qh-fOx" secondAttribute="bottom" constant="10" id="Mjp-uJ-GHp"/>
+                            <constraint firstItem="o49-Er-1m2" firstAttribute="leading" secondItem="6pS-N8-tGU" secondAttribute="leading" constant="16" id="T0z-L7-4X1"/>
+                            <constraint firstItem="pu3-ZE-lWU" firstAttribute="top" secondItem="Auv-j6-XoR" secondAttribute="bottom" constant="10" id="TQM-Bc-l7Z"/>
+                            <constraint firstItem="6pS-N8-tGU" firstAttribute="bottom" secondItem="o49-Er-1m2" secondAttribute="bottom" constant="16" id="VAk-De-0Bc"/>
+                            <constraint firstItem="Auv-j6-XoR" firstAttribute="leading" secondItem="6pS-N8-tGU" secondAttribute="leading" constant="10" id="YrN-jZ-U5k"/>
+                            <constraint firstItem="vTG-jb-HxA" firstAttribute="centerX" secondItem="o49-Er-1m2" secondAttribute="centerX" id="eA1-ZC-VUt"/>
                             <constraint firstItem="6pS-N8-tGU" firstAttribute="trailing" secondItem="PYs-Qh-fOx" secondAttribute="trailing" constant="16" id="eS7-RS-Pj7"/>
+                            <constraint firstItem="6pS-N8-tGU" firstAttribute="trailing" secondItem="Auv-j6-XoR" secondAttribute="trailing" constant="10" id="mIs-8g-VDm"/>
                             <constraint firstItem="6pS-N8-tGU" firstAttribute="trailing" secondItem="pu3-ZE-lWU" secondAttribute="trailing" constant="16" id="rfk-xC-saE"/>
-                            <constraint firstItem="6pS-N8-tGU" firstAttribute="trailing" secondItem="UqC-Ka-cPZ" secondAttribute="trailing" constant="16" id="sD2-tY-do6"/>
-                            <constraint firstItem="6pS-N8-tGU" firstAttribute="bottom" secondItem="GtX-4g-35l" secondAttribute="bottom" constant="16" id="tSa-Dq-EFj"/>
-                            <constraint firstItem="pu3-ZE-lWU" firstAttribute="top" secondItem="UqC-Ka-cPZ" secondAttribute="bottom" constant="15" id="zep-UA-40k"/>
+                            <constraint firstItem="o49-Er-1m2" firstAttribute="top" secondItem="pu3-ZE-lWU" secondAttribute="bottom" constant="16" id="tJU-n1-k37"/>
+                            <constraint firstItem="6pS-N8-tGU" firstAttribute="trailing" secondItem="o49-Er-1m2" secondAttribute="trailing" constant="16" id="xKO-pH-9Td"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="CWu-t7-pET"/>
@@ -263,10 +264,10 @@
                         <outlet property="activityIndicator" destination="vTG-jb-HxA" id="vpe-lt-zJg"/>
                         <outlet property="sourceLanguageLabel" destination="sfx-ao-yfk" id="tob-n1-kc3"/>
                         <outlet property="targetLanguageLabel" destination="o8k-pt-YTF" id="EMd-r7-0Iy"/>
+                        <outlet property="textToTranslateTextView" destination="Auv-j6-XoR" id="rl1-vA-74o"/>
                         <outlet property="titleUIView" destination="PYs-Qh-fOx" id="TnK-3P-Msb"/>
-                        <outlet property="translateLabel" destination="GtX-4g-35l" id="diD-ZG-HoM"/>
-                        <outlet property="translateTextField" destination="UqC-Ka-cPZ" id="1fj-yW-dvv"/>
                         <outlet property="translateTextUIbutton" destination="pu3-ZE-lWU" id="gy6-xt-tBV"/>
+                        <outlet property="translatedTextView" destination="o49-Er-1m2" id="Hri-lm-S4x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3X3-Wt-HIn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -295,7 +296,7 @@
                                                     <color key="titleColor" red="0.38823529410000002" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="digitsButton:" destination="1iV-SS-ple" eventType="touchUpInside" id="YgH-3y-MG3"/>
+                                                    <action selector="didTapOnDigitButton:" destination="1iV-SS-ple" eventType="touchUpInside" id="YgH-3y-MG3"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dp2-Xg-0Yu">
@@ -306,7 +307,7 @@
                                                     <color key="titleColor" red="0.38823529410000002" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="digitsButton:" destination="1iV-SS-ple" eventType="touchUpInside" id="ejY-Gp-sS5"/>
+                                                    <action selector="didTapOnDigitButton:" destination="1iV-SS-ple" eventType="touchUpInside" id="ejY-Gp-sS5"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GW9-Th-6GI">
@@ -317,7 +318,7 @@
                                                     <color key="titleColor" red="0.38823529410000002" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="digitsButton:" destination="1iV-SS-ple" eventType="touchUpInside" id="N6m-1s-XHg"/>
+                                                    <action selector="didTapOnDigitButton:" destination="1iV-SS-ple" eventType="touchUpInside" id="N6m-1s-XHg"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pPW-dX-8IV">
@@ -345,7 +346,7 @@
                                                     <color key="titleColor" red="0.38823529410000002" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="digitsButton:" destination="1iV-SS-ple" eventType="touchUpInside" id="Reh-2U-OJJ"/>
+                                                    <action selector="didTapOnDigitButton:" destination="1iV-SS-ple" eventType="touchUpInside" id="Reh-2U-OJJ"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tVF-ir-k3l">
@@ -356,7 +357,7 @@
                                                     <color key="titleColor" red="0.38823529410000002" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="digitsButton:" destination="1iV-SS-ple" eventType="touchUpInside" id="Lhy-dg-oHy"/>
+                                                    <action selector="didTapOnDigitButton:" destination="1iV-SS-ple" eventType="touchUpInside" id="Lhy-dg-oHy"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H3u-MK-BD6">
@@ -367,7 +368,7 @@
                                                     <color key="titleColor" red="0.38823529410000002" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="digitsButton:" destination="1iV-SS-ple" eventType="touchUpInside" id="wet-1H-gfy"/>
+                                                    <action selector="didTapOnDigitButton:" destination="1iV-SS-ple" eventType="touchUpInside" id="wet-1H-gfy"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hyE-3M-scz">
@@ -378,7 +379,7 @@
                                                     <color key="titleColor" red="0.38823529410000002" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="digitsButton:" destination="1iV-SS-ple" eventType="touchUpInside" id="deH-YE-rtm"/>
+                                                    <action selector="didTapOnDigitButton:" destination="1iV-SS-ple" eventType="touchUpInside" id="deH-YE-rtm"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -395,7 +396,7 @@
                                                     <color key="titleColor" red="0.38823529410000002" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="digitsButton:" destination="1iV-SS-ple" eventType="touchUpInside" id="lIc-Vg-KFO"/>
+                                                    <action selector="didTapOnDigitButton:" destination="1iV-SS-ple" eventType="touchUpInside" id="lIc-Vg-KFO"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4KA-3m-5fi">
@@ -406,7 +407,7 @@
                                                     <color key="titleColor" red="0.38823529410000002" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="digitsButton:" destination="1iV-SS-ple" eventType="touchUpInside" id="hWC-Os-QaB"/>
+                                                    <action selector="didTapOnDigitButton:" destination="1iV-SS-ple" eventType="touchUpInside" id="hWC-Os-QaB"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IMO-pD-hZn">
@@ -417,7 +418,7 @@
                                                     <color key="titleColor" red="0.38823529410000002" green="0.3803921569" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="digitsButton:" destination="1iV-SS-ple" eventType="touchUpInside" id="2Ny-10-aa6"/>
+                                                    <action selector="didTapOnDigitButton:" destination="1iV-SS-ple" eventType="touchUpInside" id="2Ny-10-aa6"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XVR-K2-OGF">

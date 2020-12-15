@@ -75,9 +75,15 @@ class WeatherViewController: BaseViewController {
         }
     }
     
-    private func weatherOfEachCity(response: WeatherResponse, temperatureLabel: UILabel, cityNameLabel: UILabel, descriptionWeatherConditionsLabel: UILabel,weatherInMyCityImageView: UIImageView) {
+    private func weatherOfEachCity(
+        response: WeatherResponse,
+        temperatureLabel: UILabel,
+        cityNameLabel: UILabel,
+        descriptionWeatherConditionsLabel: UILabel,
+        weatherInMyCityImageView: UIImageView
+    ) {
         let city = response.name
-        let weatherIconName = weatherService.getImageId(condiotionCode: response)
+        let weatherIconName = weatherService.getImageId(iconId: response.weather?.first?.id ?? 0 )
         let currentTemperature = response.main?.temp ?? 0
         let currentTemperatureFormated = String(format: "%0.1f", currentTemperature)
         let weatherMain = response.weather?.first?.main ?? "0"

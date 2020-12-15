@@ -7,7 +7,14 @@
 
 import Foundation
 
-class NetworkManager {
+
+protocol NetworkManagerProtocol {
+    func fetch<T : Codable>(url: URL, completion: @escaping (Result<T, NetworkManagerError>) -> Void)
+}
+
+
+
+class NetworkManager: NetworkManagerProtocol {
     
     func fetch<T : Codable>(url: URL, completion: @escaping (Result<T, NetworkManagerError>) -> Void)  {
         

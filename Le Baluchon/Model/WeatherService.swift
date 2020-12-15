@@ -7,6 +7,11 @@
 
 import Foundation
 
+
+enum WeatherServiceError: Error {
+    case couldNotGetImage
+}
+
 class WeatherService {
     private let networkManager = NetworkManager()
     
@@ -36,24 +41,18 @@ class WeatherService {
         networkManager.fetch(url: url, completion: completion)
     }
     
-    func getImageId(condiotionCode: WeatherResponse) ->String {
+    func getImageId(iconId: Int) -> String {
         
-        guard let iconId = condiotionCode.weather?.first?.id else { return "Error" }
-        
-        var iconName: String {
-            switch iconId {
-            case 200...232: return "thunderstorm"
-            case 300...321: return "drizzle"
-            case 500...531: return "rain"
-            case 600...622: return "snow"
-            case 701...781: return "atmosphere"
-            case 800: return "clear"
-            case 801...804: return "clouds"
-            default: return "no-image"
-                
-            }
+        switch iconId {
+        case 200...232: return "thunderstorm"
+        case 300...321: return "drizzle"
+        case 500...531: return "rain"
+        case 600...622: return "snow"
+        case 701...781: return "atmosphere"
+        case 800: return "clear"
+        case 801...804: return "clouds"
+        default: return "no-image"
+            
         }
-        
-        return iconName
     }
 }

@@ -40,32 +40,35 @@ class CurrencyViewController: BaseViewController {
         convertedValueLabel.text = ""
     }
     
-    @IBAction func digitsButton(_ sender: UIButton) {
-        let digit = valueToConvertLabel.text! + String(sender.tag)
+    @IBAction func didTapOnDigitButton(_ sender: UIButton) {
         
-        valueToConvertLabel.text = digit
+        guard let valueToConvertString = valueToConvertLabel.text else { return }
+        let concatenatedValueToConvertString = valueToConvertString + String(sender.tag)
         
-        guard let url = currencyService.getCurrencyURL() else { return }
-        networkManager.fetch(url: url, completion: assignRateToLabel)
+        guard let valueToConvert = Double(concatenatedValueToConvertString) else { return }
+        
+        valueToConvertLabel.text = concatenatedValueToConvertString
+        
+    
+        currencyService.getConvertedValue(
+            sourceCurrency: sourceCurrency,
+            targetCurrency: targetCurrency,
+            valueToConvert: valueToConvert,
+            completion: assignRateToLabel(result:)
+        )
         
     }
     
-    func assignRateToLabel(currencyResponse: Result<CurrencyResponse, NetworkManagerError>) {
+    func assignRateToLabel(result: Result<String, CurrencyServiceError>) {
 
         DispatchQueue.main.async {
             
-            switch currencyResponse {
+            switch result {
             case .failure(let error):
                 print(error.localizedDescription)
                 self.alertManagerController.presentSimpleAlert(from: self, message: error.localizedDescription)
-            case .success(let response):
-                let valueToConvert = Double(self.valueToConvertLabel.text!)!
-                print(valueToConvert)
-                let convertedValue = valueToConvert * response.rates["\(self.targetCurrency.code)"]!
-                print(self.targetCurrency.code)
-                print(response.rates["\(self.targetCurrency.code)"]!)
-                let valueFormated = String(format: "%.2f", convertedValue)
-                self.convertedValueLabel.text = valueFormated.description
+            case .success(let convertedValue):
+                self.convertedValueLabel.text = convertedValue
             }
             
         }
@@ -74,8 +77,8 @@ class CurrencyViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        sourceCurrency = .usd
-        targetCurrency = .euro
+        sourceCurrency = .euro
+        targetCurrency = .usd
     }
 }
 

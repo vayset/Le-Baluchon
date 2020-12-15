@@ -19,6 +19,7 @@
 		3FDC9E86257C923700E8D90C /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDC9E85257C923700E8D90C /* Language.swift */; };
 		3FDC9E8B257C92FF00E8D90C /* TranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDC9E8A257C92FF00E8D90C /* TranslateService.swift */; };
 		3FDC9E93258847EC00E8D90C /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDC9E92258847EC00E8D90C /* CurrencyService.swift */; };
+		3FDC9EA22589584900E8D90C /* NetworkManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDC9E9D2589583500E8D90C /* NetworkManagerMock.swift */; };
 		3FF22E9C255CED5500FE13A7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF22E9B255CED5500FE13A7 /* NetworkManager.swift */; };
 		3FF22EA1255CEEC700FE13A7 /* NetworkManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF22EA0255CEEC700FE13A7 /* NetworkManagerError.swift */; };
 		3FF4CD67252CDF6E004DD82E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4CD66252CDF6E004DD82E /* AppDelegate.swift */; };
@@ -59,6 +60,7 @@
 		3FDC9E85257C923700E8D90C /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
 		3FDC9E8A257C92FF00E8D90C /* TranslateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateService.swift; sourceTree = "<group>"; };
 		3FDC9E92258847EC00E8D90C /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
+		3FDC9E9D2589583500E8D90C /* NetworkManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerMock.swift; sourceTree = "<group>"; };
 		3FF22E9B255CED5500FE13A7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		3FF22EA0255CEEC700FE13A7 /* NetworkManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerError.swift; sourceTree = "<group>"; };
 		3FF4CD63252CDF6E004DD82E /* Le Baluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Le Baluchon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -187,6 +189,7 @@
 		3FF4CD7C252CDF6F004DD82E /* Le BaluchonTests */ = {
 			isa = PBXGroup;
 			children = (
+				3FDC9E9D2589583500E8D90C /* NetworkManagerMock.swift */,
 				3FF4CD7D252CDF6F004DD82E /* Le_BaluchonTests.swift */,
 				3FF4CD7F252CDF6F004DD82E /* Info.plist */,
 			);
@@ -356,6 +359,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FDC9EA22589584900E8D90C /* NetworkManagerMock.swift in Sources */,
 				3FF4CD7E252CDF6F004DD82E /* Le_BaluchonTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -4,27 +4,32 @@ class TranslateViewController: BaseViewController {
 
     @IBOutlet weak var targetLanguageLabel: UILabel!
     @IBOutlet weak var sourceLanguageLabel: UILabel!
-    @IBOutlet weak var translateTextField: UITextField!
-    @IBOutlet weak var translateLabel: UILabel!
+    
+    
+    @IBOutlet weak var translatedTextView: UITextView!
+    @IBOutlet weak var textToTranslateTextView: UITextView!
+
     @IBOutlet weak var translateTextUIbutton: UIButton!
     @IBOutlet weak var titleUIView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private let networkManager = NetworkManager()
     private let translateService = TranslateService()
+    
+    
 
     func assignTranslatedText(translateResponse: Result<TranslateResponse, NetworkManagerError>) {
 
         DispatchQueue.main.async {
-            self.activityIndicator.hidesWhenStopped = true
-            self.activityIndicator.startAnimating()
+
+            self.activityIndicator.stopAnimating()
+            
             switch translateResponse {
             case .failure(let error):
                 self.alertManagerController.presentSimpleAlert(from: self, message: error.localizedDescription)
             case .success(let response):
-                self.activityIndicator.stopAnimating()
                 guard let translatedText = response.data?.translations?.first?.translatedText else { return }
-                self.translateLabel.text = translatedText
+                self.translatedTextView.text = translatedText
             }
         }
     }
@@ -32,6 +37,8 @@ class TranslateViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         customUIView(customUIView: titleUIView)
+        
+        activityIndicator.hidesWhenStopped = true
         
         sourceLanguage = .english
         targetLanguage = .french
@@ -48,8 +55,8 @@ class TranslateViewController: BaseViewController {
         customUIView.layer.shadowOffset = .zero
         customUIView.layer.shadowRadius = 10
         translateTextUIbutton.layer.cornerRadius = 5
-        translateLabel.layer.masksToBounds = true
-        translateLabel.layer.cornerRadius = 5
+        translatedTextView.layer.masksToBounds = true
+        translatedTextView.layer.cornerRadius = 5
     }
     
     private var sourceLanguage: Language = .english {
@@ -65,16 +72,18 @@ class TranslateViewController: BaseViewController {
         }
     }
 
-    @IBAction func translateButton() {
+    @IBAction func didTapOnTranslateButton() {
         
         guard let url = translateService.getTranslateUrl(
             sourcelanguageCode: sourceLanguage.code,
             targetLanguageCode: targetLanguage.code,
-            textToTranslate: translateTextField.text!
+            textToTranslate: textToTranslateTextView.text!
         ) else {
             print("Failed to get translate url")
             return
         }
+        
+        activityIndicator.startAnimating()
         
         networkManager.fetch(url: url, completion: assignTranslatedText)
     }
