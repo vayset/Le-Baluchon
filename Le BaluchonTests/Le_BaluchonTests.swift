@@ -103,5 +103,16 @@ class Le_BaluchonTests: XCTestCase {
         }
     }
     
+    
+    func testWeatherServiceSuccess()  {
+        
+        let  networkManagerWeatherMockSucces = NetworkManagerWeatherMockSucces()
+        
+        _ = WeatherService(networkManager: networkManagerWeatherMockSucces)
+        
+            
+        
+    }
+    
 
 }

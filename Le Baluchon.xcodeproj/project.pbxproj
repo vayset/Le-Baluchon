@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3F074E48253FDD6800326FC0 /* TranslateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F074E47253FDD6800326FC0 /* TranslateResponse.swift */; };
 		3F074E4F253FF17000326FC0 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4CDAF2533679C004DD82E /* WeatherViewController.swift */; };
+		3F4ED5AE258ED8AD00069785 /* NetworkManagerWeatherMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4ED5AD258ED8AD00069785 /* NetworkManagerWeatherMock.swift */; };
 		3F62CC882564024800A8C60F /* AlertManagerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F62CC872564024800A8C60F /* AlertManagerController.swift */; };
 		3F62CC902564332000A8C60F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F62CC8F2564332000A8C60F /* BaseViewController.swift */; };
 		3FA8EF692566102400C94AEB /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA8EF682566102400C94AEB /* WeatherService.swift */; };
@@ -51,6 +52,7 @@
 
 /* Begin PBXFileReference section */
 		3F074E47253FDD6800326FC0 /* TranslateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateResponse.swift; sourceTree = "<group>"; };
+		3F4ED5AD258ED8AD00069785 /* NetworkManagerWeatherMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerWeatherMock.swift; sourceTree = "<group>"; };
 		3F62CC872564024800A8C60F /* AlertManagerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManagerController.swift; sourceTree = "<group>"; };
 		3F62CC8F2564332000A8C60F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3FA8EF682566102400C94AEB /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				3FDC9E9D2589583500E8D90C /* NetworkManagerMock.swift */,
+				3F4ED5AD258ED8AD00069785 /* NetworkManagerWeatherMock.swift */,
 				3FF4CD7D252CDF6F004DD82E /* Le_BaluchonTests.swift */,
 				3FF4CD7F252CDF6F004DD82E /* Info.plist */,
 			);
@@ -359,6 +362,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F4ED5AE258ED8AD00069785 /* NetworkManagerWeatherMock.swift in Sources */,
 				3FDC9EA22589584900E8D90C /* NetworkManagerMock.swift in Sources */,
 				3FF4CD7E252CDF6F004DD82E /* Le_BaluchonTests.swift in Sources */,
 			);

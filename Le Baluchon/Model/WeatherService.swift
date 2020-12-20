@@ -13,7 +13,14 @@ enum WeatherServiceError: Error {
 }
 
 class WeatherService {
-    private let networkManager = NetworkManager()
+    
+    
+    
+    init(networkManager: NetworkManagerProtocol = NetworkManager()) {
+        self.networkManager = networkManager
+    }
+    
+    private let networkManager: NetworkManagerProtocol
     
     func getWeatherURL(cityId: String) -> URL? {
         
