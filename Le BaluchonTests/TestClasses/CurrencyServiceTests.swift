@@ -1,14 +1,7 @@
-//
-//  Le_BaluchonTests.swift
-//  Le BaluchonTests
-//
-//  Created by Saddam Satouyev on 06/10/2020.
-//
-
 import XCTest
 @testable import Le_Baluchon
 
-class Le_BaluchonTests: XCTestCase {
+class CurrencyServiceTests: XCTestCase {
 
 //
 //    func testExample() throws {
@@ -103,16 +96,11 @@ class Le_BaluchonTests: XCTestCase {
         }
     }
     
-    
-    func testWeatherServiceSuccess()  {
-        
-        let  networkManagerWeatherMockSucces = NetworkManagerWeatherMockSucces()
-        
-        _ = WeatherService(networkManager: networkManagerWeatherMockSucces)
-        
-            
-        
-    }
-    
 
 }
+
+
+
+
+
+

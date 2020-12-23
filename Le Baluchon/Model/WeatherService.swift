@@ -16,27 +16,17 @@ class WeatherService {
     
     
     
-    init(networkManager: NetworkManagerProtocol = NetworkManager()) {
+    init(
+        networkManager: NetworkManagerProtocol = NetworkManager(),
+        urlComponents: UrlComponentsProtocol = URLComponents()
+    ) {
         self.networkManager = networkManager
+        self.urlComponents = urlComponents
     }
     
-    private let networkManager: NetworkManagerProtocol
+
     
-    func getWeatherURL(cityId: String) -> URL? {
-        
-        var urlComponents = URLComponents()
-        urlComponents.scheme = "http"
-        urlComponents.host = "api.openweathermap.org"
-        urlComponents.path = "/data/2.5/weather"
-        urlComponents.queryItems = [
-            URLQueryItem(name: "id", value: cityId),
-            URLQueryItem(name: "appid", value: "2c0724a7707cee690f3818f2bb142711"),
-            URLQueryItem(name: "units", value: "metric")
-        ]
-        
-        return urlComponents.url
-        //        return URL(string: urlString)
-    }
+   
     
     func getWeather(cityId: String, completion: @escaping (Result<WeatherResponse, NetworkManagerError>) -> Void) {
         guard let url = getWeatherURL(cityId: cityId) else {
@@ -62,4 +52,30 @@ class WeatherService {
             
         }
     }
+    
+    
+    
+    
+    
+    // MARK: Model / Dependence
+    private let networkManager: NetworkManagerProtocol
+    private var urlComponents: UrlComponentsProtocol
+    
+    
+    
+    private func getWeatherURL(cityId: String) -> URL? {
+        
+        urlComponents.scheme = "http"
+        urlComponents.host = "api.openweathermap.org"
+        urlComponents.path = "/data/2.5/weather"
+        urlComponents.queryItems = [
+            URLQueryItem(name: "id", value: cityId),
+            URLQueryItem(name: "appid", value: "2c0724a7707cee690f3818f2bb142711"),
+            URLQueryItem(name: "units", value: "metric")
+        ]
+        
+        return urlComponents.url
+    }
 }
+
+

@@ -13,7 +13,7 @@ class TranslateViewController: BaseViewController {
     @IBOutlet weak var titleUIView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    private let networkManager = NetworkManager()
+
     private let translateService = TranslateService()
     
     
@@ -36,8 +36,9 @@ class TranslateViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        customUIView(customUIView: titleUIView)
         
+        customUIView(customUIView: titleUIView)
+        customUIView(customUIView: textToTranslateTextView)
         activityIndicator.hidesWhenStopped = true
         
         sourceLanguage = .english
@@ -73,19 +74,18 @@ class TranslateViewController: BaseViewController {
     }
 
     @IBAction func didTapOnTranslateButton() {
-        
-        guard let url = translateService.getTranslateUrl(
-            sourcelanguageCode: sourceLanguage.code,
-            targetLanguageCode: targetLanguage.code,
-            textToTranslate: textToTranslateTextView.text!
-        ) else {
-            print("Failed to get translate url")
-            return
-        }
+        guard let textToTranslate = textToTranslateTextView.text else { return }
         
         activityIndicator.startAnimating()
+
         
-        networkManager.fetch(url: url, completion: assignTranslatedText)
-    }
+        translateService.translateText(
+            sourceLanguage: sourceLanguage,
+            targetLanguage: targetLanguage,
+            textToTranslate: textToTranslate,
+            completion: assignTranslatedText(translateResponse:)
+        )
     
+        
+    }
 }

@@ -9,16 +9,16 @@ import Foundation
 
 @testable import Le_Baluchon
 
-
+// Common to all
 class NetworkManagerMockFailure: NetworkManagerProtocol {
     func fetch<T>(url: URL, completion: @escaping (Result<T, NetworkManagerError>) -> Void) where T : Decodable, T : Encodable {
         completion(.failure(.couldNotCreateUrl))
     }
-    
-    
 }
 
 
+
+// Individiual
 class NetworkManagerMockSuccessWithRate: NetworkManagerProtocol {
     
     init(euroRate: Double, usdRate: Double) {
