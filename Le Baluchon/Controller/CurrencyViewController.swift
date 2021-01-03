@@ -3,28 +3,13 @@ import UIKit
 
 
 class CurrencyViewController: BaseViewController {
-
+    
+    // MARK: - IBOutlets / IBActions
+    
     @IBOutlet weak var valueToConvertLabel: UILabel!
     @IBOutlet weak var convertedValueLabel: UILabel!
     @IBOutlet weak var targetCurrencyImageView: UIImageView!
     @IBOutlet weak var sourceCurrencyImageView: UIImageView!
-    
-    private let networkManager = NetworkManager()
-    private let currencyService = CurrencyService()
-    
-    private var sourceCurrency: Currency = .euro {
-        didSet {
-            sourceCurrencyImageView.image = UIImage(named: sourceCurrency.displayIcons)
-
-        }
-    }
-    
-   private var targetCurrency: Currency = .usd {
-        didSet{
-            targetCurrencyImageView.image = UIImage(named: targetCurrency.displayIcons)
-
-        }
-    }
     
     @IBAction func addPoint(_ sender: Any) {
         let point = valueToConvertLabel.text! + String(".")
@@ -49,7 +34,6 @@ class CurrencyViewController: BaseViewController {
         
         valueToConvertLabel.text = concatenatedValueToConvertString
         
-    
         currencyService.getConvertedValue(
             sourceCurrency: sourceCurrency,
             targetCurrency: targetCurrency,
@@ -59,10 +43,38 @@ class CurrencyViewController: BaseViewController {
         
     }
     
-    func assignRateToLabel(result: Result<String, CurrencyServiceError>) {
-
+    // MARK: - Internal
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        sourceCurrency = .euro
+        targetCurrency = .usd
+    }
+    
+    // MARK: - Private
+    
+    // MARK: - Properties - Private
+    
+    private let networkManager = NetworkManager()
+    private let currencyService = CurrencyService()
+    
+    private var sourceCurrency: Currency = .euro {
+        didSet {
+            sourceCurrencyImageView.image = UIImage(named: sourceCurrency.displayIcons)
+        }
+    }
+    
+    private var targetCurrency: Currency = .usd {
+        didSet{
+            targetCurrencyImageView.image = UIImage(named: targetCurrency.displayIcons)
+        }
+    }
+    
+    // MARK: - Methods - Private
+    
+    private func assignRateToLabel(result: Result<String, CurrencyServiceError>) {
+        
         DispatchQueue.main.async {
-            
             switch result {
             case .failure(let error):
                 print(error.localizedDescription)
@@ -75,10 +87,5 @@ class CurrencyViewController: BaseViewController {
         
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        sourceCurrency = .euro
-        targetCurrency = .usd
-    }
 }
 

@@ -14,7 +14,9 @@ enum WeatherServiceError: Error {
 
 class WeatherService {
     
+    // MARK: - Internal
     
+    // MARK: Methods - Internal
     
     init(
         networkManager: NetworkManagerProtocol = NetworkManager(),
@@ -23,10 +25,6 @@ class WeatherService {
         self.networkManager = networkManager
         self.urlComponents = urlComponents
     }
-    
-
-    
-   
     
     func getWeather(cityId: String, completion: @escaping (Result<WeatherResponse, NetworkManagerError>) -> Void) {
         guard let url = getWeatherURL(cityId: cityId) else {
@@ -49,22 +47,20 @@ class WeatherService {
         case 800: return "clear"
         case 801...804: return "clouds"
         default: return "no-image"
-            
         }
     }
     
+    // MARK: - PRIVATE
     
+    // MARK: Properties - PRIVATE
     
-    
-    
-    // MARK: Model / Dependence
     private let networkManager: NetworkManagerProtocol
     private var urlComponents: UrlComponentsProtocol
     
-    
+    // MARK: Methods - PRIVATE
     
     private func getWeatherURL(cityId: String) -> URL? {
-        
+
         urlComponents.scheme = "http"
         urlComponents.host = "api.openweathermap.org"
         urlComponents.path = "/data/2.5/weather"
@@ -73,7 +69,6 @@ class WeatherService {
             URLQueryItem(name: "appid", value: "2c0724a7707cee690f3818f2bb142711"),
             URLQueryItem(name: "units", value: "metric")
         ]
-        
         return urlComponents.url
     }
 }

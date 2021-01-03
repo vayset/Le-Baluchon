@@ -2,9 +2,9 @@ import XCTest
 @testable import Le_Baluchon
 
 class WeatherServiceTests: XCTestCase {
-
     
-    func testWeatherServiceSuccess() {
+    
+    func testGivenWeatherServiceWhenNetworkManagerMockSuccessWithWeatherThenWeatherServiceSuccess() {
         
         
         let networkManagerMockSucces = NetworkManagerMockSuccessWithWeather()
@@ -25,9 +25,7 @@ class WeatherServiceTests: XCTestCase {
     }
     
     
-    
-    
-    func testWeatherServiceFailure() {
+    func testGivenWeatherServiceWhenNetworkManagerMockFailureThenWeatherServiceFailure() {
         
         
         let networkManagerMockFailure = NetworkManagerMockFailure()
@@ -48,9 +46,7 @@ class WeatherServiceTests: XCTestCase {
     }
     
     
-    func testWeatherServiceFailureCouldNotCreateUrl() {
-        
-      
+    func testGivenWeatherServiceWhenURLComponentsFailureThenCouldNotCreateUrl() {
         
         let weatherService = WeatherService(
             urlComponents: UrlComponentsMock()
@@ -70,17 +66,24 @@ class WeatherServiceTests: XCTestCase {
     }
     
     
-    func testWeatherServiceGetImage() {
+    func testGivenWeatherServiceWhenWeAddIconIdThenWeGetImage() {
         
-      
+        
         
         let weatherService = WeatherService()
         
         
-        XCTAssertEqual(weatherService.getImageId(iconId: 1), "no-image")
         XCTAssertEqual(weatherService.getImageId(iconId: 200), "thunderstorm")
+        XCTAssertEqual(weatherService.getImageId(iconId: 300), "drizzle")
+        XCTAssertEqual(weatherService.getImageId(iconId: 500), "rain")
+        XCTAssertEqual(weatherService.getImageId(iconId: 600), "snow")
+        XCTAssertEqual(weatherService.getImageId(iconId: 701), "atmosphere")
+        XCTAssertEqual(weatherService.getImageId(iconId: 800), "clear")
+        XCTAssertEqual(weatherService.getImageId(iconId: 801), "clouds")
+        XCTAssertEqual(weatherService.getImageId(iconId: 1), "no-image")
+        
         
     }
     
-
+    
 }

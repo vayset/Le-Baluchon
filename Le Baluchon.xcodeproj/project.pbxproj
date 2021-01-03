@@ -15,6 +15,13 @@
 		3F895CAA259352DE006CA7D2 /* WeatherServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F895CA9259352DE006CA7D2 /* WeatherServiceTests.swift */; };
 		3F895CB5259359DD006CA7D2 /* UrlComponentsMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F895CB4259359DD006CA7D2 /* UrlComponentsMock.swift */; };
 		3F895CBA25935A94006CA7D2 /* UrlComponentsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F895CB925935A94006CA7D2 /* UrlComponentsProtocol.swift */; };
+		3F8B99A325945E18007DFCC8 /* TranslateServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8B99A225945E18007DFCC8 /* TranslateServiceTests.swift */; };
+		3F8B99A825945EB2007DFCC8 /* NetworkManagerTranslateMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8B99A725945EB2007DFCC8 /* NetworkManagerTranslateMock.swift */; };
+		3F8B99B0259CD077007DFCC8 /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8B99AF259CD077007DFCC8 /* URLSessionMock.swift */; };
+		3F8B99B5259CD0FF007DFCC8 /* NetworkManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8B99B4259CD0FF007DFCC8 /* NetworkManagerTests.swift */; };
+		3F8B99BA259CD1E1007DFCC8 /* CodableMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8B99B9259CD1E1007DFCC8 /* CodableMock.swift */; };
+		3F8B99BF259CD29C007DFCC8 /* UrlSessionDataTaskMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8B99BE259CD29C007DFCC8 /* UrlSessionDataTaskMock.swift */; };
+		3F8B99F2259CDC52007DFCC8 /* FakeJson.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F8B99C7259CD736007DFCC8 /* FakeJson.json */; };
 		3FA8EF692566102400C94AEB /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA8EF682566102400C94AEB /* WeatherService.swift */; };
 		3FB72FEC253548FF0081CEE7 /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB72FEB253548FF0081CEE7 /* WeatherResponse.swift */; };
 		3FB73010253550D60081CEE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FF4CD6C252CDF6E004DD82E /* Main.storyboard */; };
@@ -61,6 +68,13 @@
 		3F895CA9259352DE006CA7D2 /* WeatherServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherServiceTests.swift; sourceTree = "<group>"; };
 		3F895CB4259359DD006CA7D2 /* UrlComponentsMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlComponentsMock.swift; sourceTree = "<group>"; };
 		3F895CB925935A94006CA7D2 /* UrlComponentsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlComponentsProtocol.swift; sourceTree = "<group>"; };
+		3F8B99A225945E18007DFCC8 /* TranslateServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateServiceTests.swift; sourceTree = "<group>"; };
+		3F8B99A725945EB2007DFCC8 /* NetworkManagerTranslateMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTranslateMock.swift; sourceTree = "<group>"; };
+		3F8B99AF259CD077007DFCC8 /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
+		3F8B99B4259CD0FF007DFCC8 /* NetworkManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTests.swift; sourceTree = "<group>"; };
+		3F8B99B9259CD1E1007DFCC8 /* CodableMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableMock.swift; sourceTree = "<group>"; };
+		3F8B99BE259CD29C007DFCC8 /* UrlSessionDataTaskMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlSessionDataTaskMock.swift; sourceTree = "<group>"; };
+		3F8B99C7259CD736007DFCC8 /* FakeJson.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = FakeJson.json; sourceTree = "<group>"; };
 		3FA8EF682566102400C94AEB /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
 		3FB72FEB253548FF0081CEE7 /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
 		3FB7301425379B650081CEE7 /* TranslateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateViewController.swift; sourceTree = "<group>"; };
@@ -118,8 +132,12 @@
 			isa = PBXGroup;
 			children = (
 				3FDC9E9D2589583500E8D90C /* NetworkManagerMock.swift */,
+				3F8B99A725945EB2007DFCC8 /* NetworkManagerTranslateMock.swift */,
 				3F4ED5AD258ED8AD00069785 /* NetworkManagerWeatherMock.swift */,
 				3F895CB4259359DD006CA7D2 /* UrlComponentsMock.swift */,
+				3F8B99AF259CD077007DFCC8 /* URLSessionMock.swift */,
+				3F8B99B9259CD1E1007DFCC8 /* CodableMock.swift */,
+				3F8B99BE259CD29C007DFCC8 /* UrlSessionDataTaskMock.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -127,8 +145,11 @@
 		3F895CA8259352B0006CA7D2 /* TestClasses */ = {
 			isa = PBXGroup;
 			children = (
+				3F8B99C7259CD736007DFCC8 /* FakeJson.json */,
 				3FF4CD7D252CDF6F004DD82E /* CurrencyServiceTests.swift */,
+				3F8B99A225945E18007DFCC8 /* TranslateServiceTests.swift */,
 				3F895CA9259352DE006CA7D2 /* WeatherServiceTests.swift */,
+				3F8B99B4259CD0FF007DFCC8 /* NetworkManagerTests.swift */,
 			);
 			path = TestClasses;
 			sourceTree = "<group>";
@@ -346,6 +367,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F8B99F2259CDC52007DFCC8 /* FakeJson.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,9 +410,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F8B99BF259CD29C007DFCC8 /* UrlSessionDataTaskMock.swift in Sources */,
+				3F8B99B5259CD0FF007DFCC8 /* NetworkManagerTests.swift in Sources */,
+				3F8B99B0259CD077007DFCC8 /* URLSessionMock.swift in Sources */,
 				3F895CAA259352DE006CA7D2 /* WeatherServiceTests.swift in Sources */,
 				3F4ED5AE258ED8AD00069785 /* NetworkManagerWeatherMock.swift in Sources */,
+				3F8B99BA259CD1E1007DFCC8 /* CodableMock.swift in Sources */,
+				3F8B99A325945E18007DFCC8 /* TranslateServiceTests.swift in Sources */,
 				3F895CB5259359DD006CA7D2 /* UrlComponentsMock.swift in Sources */,
+				3F8B99A825945EB2007DFCC8 /* NetworkManagerTranslateMock.swift in Sources */,
 				3FDC9EA22589584900E8D90C /* NetworkManagerMock.swift in Sources */,
 				3FF4CD7E252CDF6F004DD82E /* CurrencyServiceTests.swift in Sources */,
 			);

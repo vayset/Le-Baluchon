@@ -13,17 +13,15 @@ enum CurrencyServiceError: Error {
     case networkManagerFailedToProvideRates
 }
 
-
-
 class CurrencyService {
     
+    // MARK: - Internal
+    
+    // MARK: Methods - Internal
     
     init(networkManager: NetworkManagerProtocol = NetworkManager()) {
         self.networkManager = networkManager
     }
-    
-    
-    private let networkManager: NetworkManagerProtocol
     
     func getConvertedValue(
         sourceCurrency: Currency,
@@ -37,9 +35,7 @@ class CurrencyService {
             case .failure:
                 completion(.failure(.networkManagerFailedToProvideRates))
                 return
-                
             case .success(let response):
-                
                 guard
                     let sourceRate = response.rates[sourceCurrency.code],
                     let targetRate = response.rates[targetCurrency.code]
@@ -47,19 +43,22 @@ class CurrencyService {
                     completion(.failure(.couldNotGetRatesFromResponse))
                     return
                 }
-                
                 let conversionRate = targetRate / sourceRate
-                
                 let convertedValue = valueToConvert * conversionRate
-  
                 let valueFormated = String(format: "%.2f", convertedValue)
-
                 completion(.success(valueFormated))
                 return
             }
         }
     }
     
+    // MARK: - PRIVATE
+    
+    // MARK: Properties - PRIVATE
+    
+    private let networkManager: NetworkManagerProtocol
+
+    // MARK: Methods - PRIVATE
     
     private func getCurrencyURL() -> URL? {
         

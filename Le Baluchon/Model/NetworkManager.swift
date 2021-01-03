@@ -12,13 +12,18 @@ protocol NetworkManagerProtocol {
     func fetch<T : Codable>(url: URL, completion: @escaping (Result<T, NetworkManagerError>) -> Void)
 }
 
-
-
 class NetworkManager: NetworkManagerProtocol {
+    
+    init(session: URLSession = URLSession.shared) {
+        self.session = session
+    }
+    
+    
+    let session: URLSession
     
     func fetch<T : Codable>(url: URL, completion: @escaping (Result<T, NetworkManagerError>) -> Void)  {
         
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let task = session.dataTask(with: url) { (data, response, error) in
             
             guard error == nil else {
                 completion(.failure(.unknownError))

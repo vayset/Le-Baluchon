@@ -20,7 +20,7 @@ struct Main: Codable {
 struct Weather: Codable {
     let id: Int?
     let main: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case id, main
     }

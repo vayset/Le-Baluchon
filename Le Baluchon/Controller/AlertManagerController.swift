@@ -11,7 +11,7 @@ class AlertManagerController {
         alertController.addAction(confirmAction)
         
         viewController.present(alertController, animated: true)
-
+        
         
     }
 }

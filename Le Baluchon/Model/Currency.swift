@@ -19,7 +19,6 @@ enum Currency {
         
     }
     
-    
     var displayIcons: String {
         switch self {
         case .euro: return "euro"

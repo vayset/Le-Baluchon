@@ -2,20 +2,8 @@ import XCTest
 @testable import Le_Baluchon
 
 class CurrencyServiceTests: XCTestCase {
-
-//
-//    func testExample() throws {
-//        let urlString = "https://translation.googleapis.com/language/translate/v2?key=AIzaSyCvWsHARdQkJ2LkskI6fP-xcOQM_Bc-yC0&q=moi&source=en&target=fr&format=text"
-//
-//        let translateUrlProvider = TranslateUrlProvider()
-//        let urlCreated = translateUrlProvider.getTranslateUrl(textToTranslate: "moi")!
-//        XCTAssertEqual(urlString, urlCreated.absoluteString)
-//
-//    }
-
     
-    
-    func testCurrencyServiceSuccess() {
+    func testGivenCurrencyServiceWhenAddNumberThenCurrencyServiceSuccess() {
         let networkManagerMockSucces = NetworkManagerMockSuccessWithRate(euroRate: 1, usdRate: 2)
         
         let currencyService = CurrencyService(networkManager: networkManagerMockSucces)
@@ -34,7 +22,7 @@ class CurrencyServiceTests: XCTestCase {
         }
     }
     
-    func testCurrencyServiceSuccessOther() {
+    func testGivenCurrencyServiceWhenAddDoubleNumberThenCurrencyServiceSuccess() {
         let networkManagerMockSucces = NetworkManagerMockSuccessWithRate(euroRate: 4, usdRate: 20)
         
         let currencyService = CurrencyService(networkManager: networkManagerMockSucces)
@@ -55,7 +43,7 @@ class CurrencyServiceTests: XCTestCase {
     
     
     
-    func testCurrencyServiceFailure() {
+    func testGivenCurrencyServiceWhenNetworkManagerFailureThenCurrencyServiceFaillure() {
         let networkManagerMockFail = NetworkManagerMockFailure()
         
         let currencyService = CurrencyService(networkManager: networkManagerMockFail)
@@ -68,7 +56,6 @@ class CurrencyServiceTests: XCTestCase {
             switch result {
             case .failure(let error):
                 XCTAssertEqual(error, CurrencyServiceError.networkManagerFailedToProvideRates)
-                
             case .success:
                 XCTFail()
             }
@@ -76,7 +63,7 @@ class CurrencyServiceTests: XCTestCase {
     }
     
     
-    func testCurrencyServiceFailureRate() {
+    func testGivenCurrencyServiceWhenGetRateFailedThenCouldNotGetRatesFromResponse() {
         let networkManagerMockFailNoRate = NetworkManagerMockNoEuroRate()
         
         let currencyService = CurrencyService(networkManager: networkManagerMockFailNoRate)
@@ -89,14 +76,11 @@ class CurrencyServiceTests: XCTestCase {
             switch result {
             case .failure(let error):
                 XCTAssertEqual(error, CurrencyServiceError.couldNotGetRatesFromResponse)
-                
             case .success:
                 XCTFail()
             }
         }
     }
-    
-
 }
 
 

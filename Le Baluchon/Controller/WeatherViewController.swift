@@ -9,45 +9,81 @@ import UIKit
 
 class WeatherViewController: BaseViewController {
     
-    @IBOutlet weak var myCityLabel: UILabel!
+    // MARK: - IBOutlets / IBActions
+    
+    /// My City
+    @IBOutlet weak var myCityNameLabel: UILabel!
     @IBOutlet weak var temperatureInMyCityLabel: UILabel!
     @IBOutlet weak var descriptionOfWeatherConditionsInMyCityLabel: UILabel!
-    @IBOutlet weak var weatherInMyCityImageView: UIImageView!
-    @IBOutlet weak var weatherInVisitCityImageView: UIImageView!
-    @IBOutlet weak var visitCityLabel: UILabel!
+    @IBOutlet weak var weatherIconInMyCityUIImageView: UIImageView!
+    @IBOutlet weak var myCityIndicatorView: UIActivityIndicatorView!
+    
+    /// Visit CIty
+    @IBOutlet weak var visitCityNameLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
-    @IBOutlet weak var descriptionOfWeatherConditionsLabel: UILabel!
+    @IBOutlet weak var descriptionOfWeatherConditionsInVisitCityLabel: UILabel!
+    @IBOutlet weak var weatherIconInVisitCityUIImageView: UIImageView!
+    @IBOutlet weak var visitCityIndicatorView: UIActivityIndicatorView!
     
-    private let weatherService = WeatherService()
-    
-    
-    private let newyorkId = "5128581"
-    private let strasbourgId = "2973783"
+    // MARK: - Internal
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        weatherService.getWeather(cityId: strasbourgId, completion: { response in
-            self.assignWeatherToLabels(
-                weatherResponse: response,
-                temperatureLabel: self.temperatureInMyCityLabel,
-                cityNameLabel: self.myCityLabel,
-                descriptionWeatherConditionsLabel: self.descriptionOfWeatherConditionsInMyCityLabel, weatherInMyCityImageView: self.weatherInMyCityImageView
-            )
-            
-        })
+        setupLoadingIndicatorViews()
         
-        weatherService.getWeather(cityId: newyorkId, completion: { response in
+        
+        loadMyCityWeather()
+        loadVisitCityWeather()
+    }
+    
+    // MARK: - Private
+    
+    // MARK: - Properties - Private
+    
+    private let weatherService = WeatherService()
+    private let newyorkId = "5128581"
+    private let strasbourgId = "2973783"
+    
+    // MARK: - Methods - Private
+    
+    private func setupLoadingIndicatorViews() {
+        myCityIndicatorView.hidesWhenStopped = true
+        visitCityIndicatorView.hidesWhenStopped = true
+    }
+    
+    private func loadVisitCityWeather() {
+        
+        visitCityIndicatorView.startAnimating()
+        
+        weatherService.getWeather(cityId: newyorkId, completion: { [weak self] response in
+            guard let self = self else { return }
             self.assignWeatherToLabels(
                 weatherResponse: response,
                 temperatureLabel: self.temperatureLabel,
-                cityNameLabel: self.visitCityLabel,
-                descriptionWeatherConditionsLabel: self.descriptionOfWeatherConditionsLabel, weatherInMyCityImageView: self.weatherInVisitCityImageView
+                cityNameLabel: self.visitCityNameLabel,
+                descriptionWeatherConditionsLabel: self.descriptionOfWeatherConditionsInVisitCityLabel,
+                weatherInMyCityImageView: self.weatherIconInVisitCityUIImageView,
+                indicatorView: self.visitCityIndicatorView
             )
-            
         })
+    }
+    
+    private func loadMyCityWeather() {
         
+        myCityIndicatorView.startAnimating()
         
+        weatherService.getWeather(cityId: strasbourgId, completion: { [weak self] response in
+            guard let self = self else { return }
+            self.assignWeatherToLabels(
+                weatherResponse: response,
+                temperatureLabel: self.temperatureInMyCityLabel,
+                cityNameLabel: self.myCityNameLabel,
+                descriptionWeatherConditionsLabel: self.descriptionOfWeatherConditionsInMyCityLabel,
+                weatherInMyCityImageView: self.weatherIconInMyCityUIImageView,
+                indicatorView: self.myCityIndicatorView
+            )
+        })
     }
     
     private func assignWeatherToLabels(
@@ -55,15 +91,14 @@ class WeatherViewController: BaseViewController {
         temperatureLabel: UILabel,
         cityNameLabel: UILabel,
         descriptionWeatherConditionsLabel: UILabel,
-        weatherInMyCityImageView: UIImageView
-    ) { // Change currency response
-        
+        weatherInMyCityImageView: UIImageView,
+        indicatorView: UIActivityIndicatorView
+    ) {
         DispatchQueue.main.async {
-            
+            indicatorView.stopAnimating()
             switch weatherResponse {
             case .failure(let error):
                 self.alertManagerController.presentSimpleAlert(from: self, message: error.localizedDescription)
-                
             case .success(let response):
                 self.weatherOfEachCity(
                     response: response,
@@ -91,8 +126,7 @@ class WeatherViewController: BaseViewController {
         cityNameLabel.text = city?.description
         descriptionWeatherConditionsLabel.text = "\(weatherMain.description)"
         weatherInMyCityImageView.image = UIImage(named: weatherIconName)
-
+        
     }
-    
     
 }

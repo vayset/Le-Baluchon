@@ -8,6 +8,11 @@
 import Foundation
 
 class TranslateService {
+    
+    // MARK: - Internal
+    
+    // MARK: Methods - Internal
+    
     init(
         networkManager: NetworkManagerProtocol = NetworkManager(),
         urlComponents: UrlComponentsProtocol = URLComponents()
@@ -15,8 +20,6 @@ class TranslateService {
         self.networkManager = networkManager
         self.urlComponents = urlComponents
     }
-    
-    
     
     func translateText(
         sourceLanguage: Language,
@@ -32,18 +35,20 @@ class TranslateService {
             completion(.failure(.couldNotCreateUrl))
             return
         }
-        
-
-        
         networkManager.fetch(url: url, completion: completion)
     }
     
+    // MARK: - PRIVATE
+    
+    // MARK: Properties - PRIVATE
     
     private var urlComponents: UrlComponentsProtocol
     private let networkManager: NetworkManagerProtocol
     
+    // MARK: Methods - PRIVATE
+    
     private func getTranslateUrl(sourcelanguageCode: String, targetLanguageCode: String, textToTranslate: String) -> URL? {
-
+        
         urlComponents.scheme = "https"
         urlComponents.host = "translation.googleapis.com"
         urlComponents.path = "/language/translate/v2"

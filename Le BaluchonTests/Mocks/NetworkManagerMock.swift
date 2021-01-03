@@ -9,14 +9,12 @@ import Foundation
 
 @testable import Le_Baluchon
 
-// Common to all
+// MARK: - tableview delegate methods
 class NetworkManagerMockFailure: NetworkManagerProtocol {
     func fetch<T>(url: URL, completion: @escaping (Result<T, NetworkManagerError>) -> Void) where T : Decodable, T : Encodable {
         completion(.failure(.couldNotCreateUrl))
     }
 }
-
-
 
 // Individiual
 class NetworkManagerMockSuccessWithRate: NetworkManagerProtocol {
@@ -47,8 +45,6 @@ class NetworkManagerMockSuccessWithRate: NetworkManagerProtocol {
     
     
 }
-
-
 
 class NetworkManagerMockNoEuroRate: NetworkManagerProtocol {
     func fetch<T>(url: URL, completion: @escaping (Result<T, NetworkManagerError>) -> Void) where T : Decodable, T : Encodable {
