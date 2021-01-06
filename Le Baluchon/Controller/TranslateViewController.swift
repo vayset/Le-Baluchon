@@ -39,17 +39,12 @@ class TranslateViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         applyRoundCornerViewStyle(view: titleUIView)
         applyRoundCornerViewStyle(view: textToTranslateTextView)
-        
-        translateTextUIbutton.layer.cornerRadius = 5
-        
-        translatedTextView.layer.masksToBounds = true
-        translatedTextView.layer.cornerRadius = 5
-        
-        activityIndicator.hidesWhenStopped = true
-        
+        applyRoundCornerViewStyle(view: translatedTextView)
+        applyRoundCornerViewStyle(view: translateTextUIbutton)
+        setupLoadingIndicatorViews(activityIndicator: activityIndicator)
+
         sourceLanguage = .english
         targetLanguage = .french
     }
@@ -96,5 +91,6 @@ class TranslateViewController: BaseViewController {
         view.layer.shadowOpacity = 0.2
         view.layer.shadowOffset = .zero
         view.layer.shadowRadius = 10
+        view.layer.masksToBounds = true
     }
 }

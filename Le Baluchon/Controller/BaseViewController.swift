@@ -11,6 +11,17 @@ class BaseViewController: UIViewController {
     
     let alertManagerController = AlertManagerController()
     
+     func setupLoadingIndicatorViews(activityIndicator: UIActivityIndicatorView) {
+        if #available(iOS 13.0, *) {
+             activityIndicator.style = .large
+         } else {
+             activityIndicator.style = .whiteLarge
+         }
+        
+        
+        activityIndicator.hidesWhenStopped = true
+    }
+    
     private func addCloseKeyboardGestureRecognizer() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGesture)

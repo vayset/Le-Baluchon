@@ -29,12 +29,15 @@ class WeatherViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupLoadingIndicatorViews()
-        
-        
+        setupLoadingIndicatorViews(activityIndicator: myCityIndicatorView)
+        setupLoadingIndicatorViews(activityIndicator: visitCityIndicatorView)
         loadMyCityWeather()
         loadVisitCityWeather()
+        if #available(iOS 13.0, *) {
+            visitCityIndicatorView.style = .large
+         } else {
+            visitCityIndicatorView.style = .whiteLarge
+         }
     }
     
     // MARK: - Private
@@ -46,11 +49,11 @@ class WeatherViewController: BaseViewController {
     private let strasbourgId = "2973783"
     
     // MARK: - Methods - Private
-    
-    private func setupLoadingIndicatorViews() {
-        myCityIndicatorView.hidesWhenStopped = true
-        visitCityIndicatorView.hidesWhenStopped = true
-    }
+        
+//    private func setupLoadingIndicatorViews() {
+//        myCityIndicatorView.hidesWhenStopped = true
+//        visitCityIndicatorView.hidesWhenStopped = true
+//    }
     
     private func loadVisitCityWeather() {
         

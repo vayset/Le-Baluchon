@@ -14,6 +14,10 @@ class CurrencyViewController: BaseViewController {
     @IBAction func addPoint(_ sender: Any) {
         let point = valueToConvertLabel.text! + String(".")
         valueToConvertLabel.text = point
+        if valueToConvertLabel.text == ".." {
+            valueToConvertLabel.text?.removeLast()
+        }
+        
     }
     
     @IBAction func didTapReverseValueUIButton(_ sender: Any) {
@@ -88,4 +92,3 @@ class CurrencyViewController: BaseViewController {
     }
     
 }
-
