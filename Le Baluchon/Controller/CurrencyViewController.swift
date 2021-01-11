@@ -1,38 +1,45 @@
 import UIKit
 
 
-
-class CurrencyViewController: BaseViewController {
+final class CurrencyViewController: BaseViewController {
     
     // MARK: - IBOutlets / IBActions
     
-    @IBOutlet weak var valueToConvertLabel: UILabel!
-    @IBOutlet weak var convertedValueLabel: UILabel!
-    @IBOutlet weak var targetCurrencyImageView: UIImageView!
-    @IBOutlet weak var sourceCurrencyImageView: UIImageView!
+    @IBOutlet private weak var valueToConvertLabel: UILabel!
+    @IBOutlet private weak var convertedValueLabel: UILabel!
+    @IBOutlet private weak var targetCurrencyImageView: UIImageView!
+    @IBOutlet private weak var sourceCurrencyImageView: UIImageView!
     
-    @IBAction func addPoint(_ sender: Any) {
-        let point = valueToConvertLabel.text! + String(".")
-        valueToConvertLabel.text = point
-        if valueToConvertLabel.text == ".." {
-            valueToConvertLabel.text?.removeLast()
-        }
+    @IBAction private func addPoint(_ sender: Any) {
+        guard
+            let valueToConvertLabelText = valueToConvertLabel.text,
+            !valueToConvertLabelText.contains("."),
+            !valueToConvertLabelText.isEmpty
+        else { return }
+        
+        valueToConvertLabel.text = (valueToConvertLabel.text ?? "0") + "."
         
     }
     
-    @IBAction func didTapReverseValueUIButton(_ sender: Any) {
+    @IBAction private func didTapReverseValueUIButton(_ sender: Any) {
         swap(&sourceCurrency, &targetCurrency)
     }
     
-    @IBAction func removeCurrencyLabel(_ sender: Any) {
+    @IBAction private func removeCurrencyLabel(_ sender: Any) {
         valueToConvertLabel.text = ""
         convertedValueLabel.text = ""
     }
     
-    @IBAction func didTapOnDigitButton(_ sender: UIButton) {
+    @IBAction private func didTapOnDigitButton(_ sender: UIButton) {
         
         guard let valueToConvertString = valueToConvertLabel.text else { return }
-        let concatenatedValueToConvertString = valueToConvertString + String(sender.tag)
+        
+        if valueToConvertString == "0" {
+            valueToConvertLabel.text?.removeLast()
+        }
+        
+        guard let nezValueToConvertString = valueToConvertLabel.text else { return }
+        let concatenatedValueToConvertString = nezValueToConvertString + String(sender.tag)
         
         guard let valueToConvert = Double(concatenatedValueToConvertString) else { return }
         

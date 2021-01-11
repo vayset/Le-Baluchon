@@ -7,23 +7,23 @@
 
 import UIKit
 
-class WeatherViewController: BaseViewController {
+final class WeatherViewController: BaseViewController {
     
     // MARK: - IBOutlets / IBActions
     
-    /// My City
-    @IBOutlet weak var myCityNameLabel: UILabel!
-    @IBOutlet weak var temperatureInMyCityLabel: UILabel!
-    @IBOutlet weak var descriptionOfWeatherConditionsInMyCityLabel: UILabel!
-    @IBOutlet weak var weatherIconInMyCityUIImageView: UIImageView!
-    @IBOutlet weak var myCityIndicatorView: UIActivityIndicatorView!
+    // My City
+    @IBOutlet weak private var myCityNameLabel: UILabel!
+    @IBOutlet weak private var temperatureInMyCityLabel: UILabel!
+    @IBOutlet weak private var descriptionOfWeatherConditionsInMyCityLabel: UILabel!
+    @IBOutlet weak private var weatherIconInMyCityUIImageView: UIImageView!
+    @IBOutlet weak private var myCityIndicatorView: UIActivityIndicatorView!
     
-    /// Visit CIty
-    @IBOutlet weak var visitCityNameLabel: UILabel!
-    @IBOutlet weak var temperatureLabel: UILabel!
-    @IBOutlet weak var descriptionOfWeatherConditionsInVisitCityLabel: UILabel!
-    @IBOutlet weak var weatherIconInVisitCityUIImageView: UIImageView!
-    @IBOutlet weak var visitCityIndicatorView: UIActivityIndicatorView!
+    // Visit CIty
+    @IBOutlet weak private var visitCityNameLabel: UILabel!
+    @IBOutlet weak private var temperatureLabel: UILabel!
+    @IBOutlet weak private var descriptionOfWeatherConditionsInVisitCityLabel: UILabel!
+    @IBOutlet weak private var weatherIconInVisitCityUIImageView: UIImageView!
+    @IBOutlet weak private var visitCityIndicatorView: UIActivityIndicatorView!
     
     // MARK: - Internal
     
@@ -49,11 +49,7 @@ class WeatherViewController: BaseViewController {
     private let strasbourgId = "2973783"
     
     // MARK: - Methods - Private
-        
-//    private func setupLoadingIndicatorViews() {
-//        myCityIndicatorView.hidesWhenStopped = true
-//        visitCityIndicatorView.hidesWhenStopped = true
-//    }
+    
     
     private func loadVisitCityWeather() {
         

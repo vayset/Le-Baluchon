@@ -31,6 +31,7 @@
 		3FDC9E8B257C92FF00E8D90C /* TranslateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDC9E8A257C92FF00E8D90C /* TranslateService.swift */; };
 		3FDC9E93258847EC00E8D90C /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDC9E92258847EC00E8D90C /* CurrencyService.swift */; };
 		3FDC9EA22589584900E8D90C /* NetworkManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDC9E9D2589583500E8D90C /* NetworkManagerMock.swift */; };
+		3FEAC03925A8A0320080010C /* LanguageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FEAC03825A8A0310080010C /* LanguageTests.swift */; };
 		3FF22E9C255CED5500FE13A7 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF22E9B255CED5500FE13A7 /* NetworkManager.swift */; };
 		3FF22EA1255CEEC700FE13A7 /* NetworkManagerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF22EA0255CEEC700FE13A7 /* NetworkManagerError.swift */; };
 		3FF4CD67252CDF6E004DD82E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4CD66252CDF6E004DD82E /* AppDelegate.swift */; };
@@ -83,6 +84,7 @@
 		3FDC9E8A257C92FF00E8D90C /* TranslateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateService.swift; sourceTree = "<group>"; };
 		3FDC9E92258847EC00E8D90C /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
 		3FDC9E9D2589583500E8D90C /* NetworkManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerMock.swift; sourceTree = "<group>"; };
+		3FEAC03825A8A0310080010C /* LanguageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageTests.swift; sourceTree = "<group>"; };
 		3FF22E9B255CED5500FE13A7 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		3FF22EA0255CEEC700FE13A7 /* NetworkManagerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerError.swift; sourceTree = "<group>"; };
 		3FF4CD63252CDF6E004DD82E /* Le Baluchon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Le Baluchon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,24 +152,65 @@
 				3F8B99A225945E18007DFCC8 /* TranslateServiceTests.swift */,
 				3F895CA9259352DE006CA7D2 /* WeatherServiceTests.swift */,
 				3F8B99B4259CD0FF007DFCC8 /* NetworkManagerTests.swift */,
+				3FEAC03825A8A0310080010C /* LanguageTests.swift */,
 			);
 			path = TestClasses;
+			sourceTree = "<group>";
+		};
+		3FEAC03D25A8A32A0080010C /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				3FB72FEB253548FF0081CEE7 /* WeatherResponse.swift */,
+				3F074E47253FDD6800326FC0 /* TranslateResponse.swift */,
+				3FF4CDAA25336038004DD82E /* CurrencyResponse.swift */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
+		3FEAC04125A8A3550080010C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3FDC9E8A257C92FF00E8D90C /* TranslateService.swift */,
+				3FA8EF682566102400C94AEB /* WeatherService.swift */,
+				3FDC9E92258847EC00E8D90C /* CurrencyService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		3FEAC04525A8A3720080010C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				3FF22EA0255CEEC700FE13A7 /* NetworkManagerError.swift */,
+				3FF22E9B255CED5500FE13A7 /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		3FEAC04925A8A3920080010C /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				3F895CB925935A94006CA7D2 /* UrlComponentsProtocol.swift */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
+		3FEAC04A25A8A3B20080010C /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
+				3FDC9E7D257C3A4C00E8D90C /* Currency.swift */,
+				3FDC9E85257C923700E8D90C /* Language.swift */,
+			);
+			path = DataModels;
 			sourceTree = "<group>";
 		};
 		3FF22EA5255CEEF600FE13A7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3FF22EA0255CEEC700FE13A7 /* NetworkManagerError.swift */,
-				3FF22E9B255CED5500FE13A7 /* NetworkManager.swift */,
-				3FDC9E7D257C3A4C00E8D90C /* Currency.swift */,
-				3FDC9E85257C923700E8D90C /* Language.swift */,
-				3FB72FEB253548FF0081CEE7 /* WeatherResponse.swift */,
-				3F074E47253FDD6800326FC0 /* TranslateResponse.swift */,
-				3FDC9E8A257C92FF00E8D90C /* TranslateService.swift */,
-				3FA8EF682566102400C94AEB /* WeatherService.swift */,
-				3FDC9E92258847EC00E8D90C /* CurrencyService.swift */,
-				3FF4CDAA25336038004DD82E /* CurrencyResponse.swift */,
-				3F895CB925935A94006CA7D2 /* UrlComponentsProtocol.swift */,
+				3FEAC04A25A8A3B20080010C /* DataModels */,
+				3FEAC04925A8A3920080010C /* Misc */,
+				3FEAC04525A8A3720080010C /* Network */,
+				3FEAC03D25A8A32A0080010C /* Responses */,
+				3FEAC04125A8A3550080010C /* Services */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -411,6 +454,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F8B99BF259CD29C007DFCC8 /* UrlSessionDataTaskMock.swift in Sources */,
+				3FEAC03925A8A0320080010C /* LanguageTests.swift in Sources */,
 				3F8B99B5259CD0FF007DFCC8 /* NetworkManagerTests.swift in Sources */,
 				3F8B99B0259CD077007DFCC8 /* URLSessionMock.swift in Sources */,
 				3F895CAA259352DE006CA7D2 /* WeatherServiceTests.swift in Sources */,
@@ -591,7 +635,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BAJKB9L735;
 				INFOPLIST_FILE = "Le Baluchon/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -611,7 +655,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BAJKB9L735;
 				INFOPLIST_FILE = "Le Baluchon/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

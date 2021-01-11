@@ -1,25 +1,24 @@
 import UIKit
 
-class TranslateViewController: BaseViewController {
+final class TranslateViewController: BaseViewController {
     
     // MARK: - IBOutlets / IBActions
     
-    @IBOutlet weak var targetLanguageLabel: UILabel!
-    @IBOutlet weak var sourceLanguageLabel: UILabel!
+    @IBOutlet weak private var titleUIView: UIView!
+
+    @IBOutlet weak private var targetLanguageLabel: UILabel!
+    @IBOutlet weak private var sourceLanguageLabel: UILabel!
     
+    @IBOutlet weak private var translatedTextView: UITextView!
+    @IBOutlet weak private var textToTranslateTextView: UITextView!
     
-    @IBOutlet weak var translatedTextView: UITextView!
-    @IBOutlet weak var textToTranslateTextView: UITextView!
+    @IBOutlet weak private var translateTextUIbutton: UIButton!
+    @IBOutlet weak private var activityIndicator: UIActivityIndicatorView!
     
-    @IBOutlet weak var translateTextUIbutton: UIButton!
-    @IBOutlet weak var titleUIView: UIView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
-    @IBAction func didTapOnTranslateButton() {
+    @IBAction private func didTapOnTranslateButton() {
         guard let textToTranslate = textToTranslateTextView.text else { return }
         
         activityIndicator.startAnimating()
-        
         
         translateService.translateText(
             sourceLanguage: sourceLanguage,
@@ -28,10 +27,9 @@ class TranslateViewController: BaseViewController {
             completion: assignTranslatedText(translateResponse:)
         )
         
-        
     }
     
-    @IBAction func didTapOnLanguageUIButton(_ sender: UIButton) {
+    @IBAction private func didTapOnLanguageUIButton(_ sender: UIButton) {
         swap(&sourceLanguage, &targetLanguage)
     }
     

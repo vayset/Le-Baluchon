@@ -1,7 +1,7 @@
 import UIKit
 
 
-class AlertManagerController {
+final class AlertManagerController {
     func presentSimpleAlert(from viewController: UIViewController, message: String) {
         
         let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)

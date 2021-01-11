@@ -36,7 +36,7 @@ class WeatherService {
         networkManager.fetch(url: url, completion: completion)
     }
     
-    func getImageId(iconId: Int) -> String {
+     func getImageId(iconId: Int) -> String {
         
         switch iconId {
         case 200...232: return "thunderstorm"
