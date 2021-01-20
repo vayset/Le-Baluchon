@@ -37,6 +37,7 @@ final class TranslateViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTextViewToolBar()
         applyRoundCornerViewStyle(view: titleUIView)
         applyRoundCornerViewStyle(view: textToTranslateTextView)
         applyRoundCornerViewStyle(view: translatedTextView)
@@ -66,6 +67,23 @@ final class TranslateViewController: BaseViewController {
     }
     
     // MARK: - Methods - Private
+    
+    private func setupTextViewToolBar() {
+        let toolBar = UIToolbar(
+            frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 35)
+        )
+        
+        toolBar.items = [
+            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+            UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(closeKeyboard))
+        ]
+
+        textToTranslateTextView.inputAccessoryView = toolBar
+    }
+    
+    @objc private func closeKeyboard() {
+        textToTranslateTextView.resignFirstResponder()
+    }
     
     private func assignTranslatedText(translateResponse: Result<TranslateResponse, NetworkManagerError>) {
         
